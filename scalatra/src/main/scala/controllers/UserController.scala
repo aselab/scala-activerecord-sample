@@ -26,11 +26,11 @@ trait UserController extends ScalateSupport with ScalatraDatabaseSupport {
 
   get("/user/new") {
     layoutTemplate("templates/user/edit.ssp",
-      "title" -> "User create", "user" -> new User, "action" -> "/user", "buttonLabel" -> "Create")
+      "title" -> "User create", "user" -> User("", 0, ""), "action" -> "/user", "buttonLabel" -> "Create")
   }
 
   post("/user") {
-    val user = new User()
+    val user = User("", 0, "")
     user(data: _*).save
     redirect("/user")
   }
