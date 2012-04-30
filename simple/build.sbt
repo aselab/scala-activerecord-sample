@@ -12,8 +12,7 @@ resolvers ++= Seq(
 libraryDependencies ++= Seq(
   "com.github.aselab" % "scala-activerecord" % "0.1-SNAPSHOT",
   "com.h2database" % "h2" % "1.3.157",
-  "org.slf4j" % "slf4j-nop" % "1.6.4",
-  "io.backchat.inflector" %% "scala-inflector" % "1.3.3"
+  "org.slf4j" % "slf4j-nop" % "1.6.4"
 )
 
 scalacOptions ++= Seq("-deprecation", "-unchecked")
