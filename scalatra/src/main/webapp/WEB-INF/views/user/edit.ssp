@@ -1,7 +1,6 @@
 <%@ var user: models.User %>
 <%@ var action: String %>
 <%@ var buttonLabel: String %>
-#do(layout("../layout.ssp"))
 
 <ul class="breadcrumb">
  <li>
@@ -38,5 +37,3 @@
     </div>
   </fieldset>
 </form>
-
-#end

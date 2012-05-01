@@ -1,6 +1,4 @@
-<%@ var users: List[models.User] %>
-#do(layout("../layout.ssp"))
-
+<%@ val users: List[models.User] %>
 <ul class="breadcrumb">
  <li>
    <a href="/">Home</a>
@@ -47,5 +45,3 @@
 <div class="form-actions">
   <a href="/user/new" class="btn btn-primary">Create</a>
 </div>
-
-#end

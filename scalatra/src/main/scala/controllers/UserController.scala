@@ -13,12 +13,12 @@ trait UserController extends ScalateSupport with ScalatraDatabaseSupport {
   }
 
   get("/user") {
-    layoutTemplate("templates/user/index.ssp",
+    layoutTemplate("/WEB-INF/views/user/index.ssp",
       "title" -> "User list", "users" -> User.all.toList)
   }
 
   get("/user/new") {
-    layoutTemplate("templates/user/edit.ssp",
+    layoutTemplate("/WEB-INF/views/user/edit.ssp",
       "title" -> "User create", "user" -> User("", 0, ""), "action" -> "/user", "buttonLabel" -> "Create")
   }
 
@@ -31,13 +31,13 @@ trait UserController extends ScalateSupport with ScalatraDatabaseSupport {
   }
 
   get("/user/:id") {
-    layoutTemplate("templates/user/show.ssp",
+    layoutTemplate("/WEB-INF/views/user/show.ssp",
       "title" -> "User info", "user" -> User(getLong("id")).get)
   }
 
   get("/user/:id/edit") {
     val id = getLong("id")
-    layoutTemplate("templates/user/edit.ssp",
+    layoutTemplate("/WEB-INF/views/user/edit.ssp",
       "title" -> "User edit", "user" -> User(id).get, "action" -> "/user/%d".format(id), "buttonLabel" -> "Save")
   }
 

@@ -1,5 +1,4 @@
-<%@ var message: String = "Hello" %>
-#do(layout("layout.ssp"))
+<%@ val message: String = "Hello" %>
 
 <div class="hero-unit">
 <h1>${message}</h1>
@@ -12,5 +11,3 @@
   <!-- <li><a href="/group">Group</a></li> -->
 </ul>
 </div>
-
-#end

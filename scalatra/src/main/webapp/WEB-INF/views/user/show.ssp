@@ -1,6 +1,4 @@
-<%@ var user: models.User %>
-#do(layout("../layout.ssp"))
-
+<%@ val user: models.User %>
 <ul class="breadcrumb">
  <li>
    <a href="/">Home</a>
@@ -31,5 +29,3 @@
     <a href="#" data-redirect="/user" data-target="/user/${user.id}" class="btn btn-danger">Delete</a>
   </div>
 </div>
-
-#end
