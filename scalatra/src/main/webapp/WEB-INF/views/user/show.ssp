@@ -20,7 +20,7 @@
   </p>
   <p>
     <b>Description</b><br/>
-    <pre>${user.description}</pre>
+    <pre>${user.description.getOrElse("")}</pre>
   </p>
 
   <div class="form-actions">

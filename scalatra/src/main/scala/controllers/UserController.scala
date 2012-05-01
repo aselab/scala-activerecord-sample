@@ -1,15 +1,22 @@
 package controllers
 
-import org.scalatra.scalate.ScalateSupport
 import com.github.aselab.activerecord._
 import models._
 
-trait UserController extends ScalateSupport with ScalatraDatabaseSupport {
-  private def getLong(key: String) =
-    params.get(key).map(s => try { s.toLong } catch { case e => pass() }).getOrElse(halt(400))
-
+trait UserController extends ApplicationController {
   before("/user*") {
     contentType = "text/html"
+  }
+
+  def getId = params.getAs[Long]("id").getOrElse(halt(400))
+
+  def userFormValues = (
+    params.get("name"),
+    params.getAs[Int]("age"),
+    params.get("description")
+  ) match  {
+    case (Some(name), Some(age), description) => (name, age, description)
+    case _ => halt(400)
   }
 
   get("/user") {
@@ -17,46 +24,60 @@ trait UserController extends ScalateSupport with ScalatraDatabaseSupport {
       "title" -> "User list", "users" -> User.all.toList)
   }
 
-  get("/user/new") {
-    layoutTemplate("/WEB-INF/views/user/edit.ssp",
-      "title" -> "User create", "user" -> User("", 0, ""), "action" -> "/user", "buttonLabel" -> "Create")
-  }
-
   post("/user") {
-    val name = params.getOrElse("name", halt(400))
-    val age = params.get("age").map(_.toInt).getOrElse(halt(400))
-    val description = params.getOrElse("description", "")
-    User(name, age, description).save
-    redirect("/user")
+    userFormValues match {
+      case (name, age, description) =>
+        val user = User(name, age, description)
+        user.save
+        redirect("/user/" + user.id)
+    }
   }
 
   get("/user/:id") {
-    layoutTemplate("/WEB-INF/views/user/show.ssp",
-      "title" -> "User info", "user" -> User(getLong("id")).get)
+    val id = getId
+    User(id) match {
+      case Some(user) => layoutTemplate("/WEB-INF/views/user/show.ssp",
+        "title" -> "User info", "user" -> user)
+      case None => halt(404)
+    }
   }
 
-  get("/user/:id/edit") {
-    val id = getLong("id")
+  get("/user/new") {
     layoutTemplate("/WEB-INF/views/user/edit.ssp",
-      "title" -> "User edit", "user" -> User(id).get, "action" -> "/user/%d".format(id), "buttonLabel" -> "Save")
+      "title" -> "User create", "user" -> new User, "action" -> "/user", "buttonLabel" -> "Create")
+  }
+
+
+  get("/user/:id/edit") {
+    val id = getId
+    User(id) match {
+      case Some(user) => layoutTemplate("/WEB-INF/views/user/edit.ssp",
+        "title" -> "User edit", "user" -> user, "action" -> "/user/%s".format(id), "buttonLabel" -> "Save")
+      case None => halt(404)
+    }
   }
 
   post("/user/:id") {
-    val id = getLong("id")
-    User(id).foreach { user =>
-      user.name = params.getOrElse("name", halt(400))
-      user.age = params.get("age").map(_.toInt).getOrElse(halt(400))
-      user.description = params.getOrElse("description", "")
-      user.save
-      redirect("/user/" + id)
+    val id = getId
+    (User(id), userFormValues) match {
+      case (Some(user), (name, age, description)) =>
+        user.name = name
+        user.age = age
+        user.description = description
+        user.save
+        redirect("/user/" + id)
+
+      case (None, _) => halt(404)
+      case _ => halt(400)
     }
-    halt(400)
   }
 
   delete("/user/:id") {
-    val id = getLong("id")
-    val user = User(id).get
-    user.delete
+    val id = getId
+    User(id) match {
+      case Some(user) => user.delete
+      case None => halt(404)
+    }
     redirect("/user")
   }
 

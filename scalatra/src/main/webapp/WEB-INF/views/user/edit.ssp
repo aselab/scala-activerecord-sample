@@ -28,7 +28,7 @@
     <div class="control-group">
       <label for="description" class="control-label">Description</label>
       <div class="controls">
-        <textarea rows="3" id="description" name="description" class="input-xlarge">${user.description}</textarea>
+        <textarea rows="3" id="description" name="description" class="input-xlarge">${user.description.getOrElse("")}</textarea>
       </div>
     </div>
     <div class="form-actions">
