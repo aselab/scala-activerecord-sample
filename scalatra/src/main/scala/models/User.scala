@@ -2,6 +2,6 @@ package models
 
 import com.github.aselab.activerecord._
 
-case class User(name: String, age: Int, description: String) extends ActiveRecord
+case class User(var name: String, var age: Int, var description: String) extends ActiveRecord
 
 object User extends ActiveRecordCompanion[User]
