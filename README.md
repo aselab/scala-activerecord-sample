@@ -19,3 +19,11 @@ $ bin/sbt
 ```
 
 The application starts on http://localhost:8080.
+
+### Play! 2.0 sample
+
+```
+> run
+```
+
+The application starts on http://localhost:9000.
