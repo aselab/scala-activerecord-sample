@@ -1,9 +1,9 @@
-@(user: Form[models.User], action: Call, buttonLabel: String)
+@(user: Form[models.User], action: Call, buttonLabel: String, title: String)
 
 @import helper._
 @import views.helpers.BootstrapHelper._
 
-@main("User edit") {
+@main(title) {
   <ul class="breadcrumb">
    <li>
      <a href="/">Home</a>

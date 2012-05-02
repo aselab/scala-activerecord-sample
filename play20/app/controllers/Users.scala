@@ -38,12 +38,12 @@ object Users extends Controller {
   }
 
   def newPage = Action {
-    Ok(view.edit(userForm(), routes.Users.create, "Create"))
+    Ok(view.edit(userForm(), routes.Users.create, "Create", "User create"))
   }
 
   def create = Action { implicit request =>
     userForm().bindFromRequest.fold(
-      errors => BadRequest(view.edit(errors, routes.Users.create, "Create")), {
+      errors => BadRequest(view.edit(errors, routes.Users.create, "Create", "User create")), {
       user =>
         transaction { user.save }
         Redirect(routes.Users.show(user.id))
@@ -52,14 +52,14 @@ object Users extends Controller {
 
   def edit(id: Long) = Action {
     User(id) match {
-      case Some(user) => Ok(view.edit(userForm(id).fill(user), routes.Users.update(id), "Update"))
+      case Some(user) => Ok(view.edit(userForm(id).fill(user), routes.Users.update(id), "Update", "User edit"))
       case _ => NotFound
     }
   }
 
   def update(id: Long) = Action { implicit request =>
     userForm(id).bindFromRequest.fold(
-      errors => BadRequest(view.edit(errors, routes.Users.update(id), "Update")), {
+      errors => BadRequest(view.edit(errors, routes.Users.update(id), "Update", "User edit")), {
       user =>
         transaction { user.save }
         Redirect(routes.Users.index)
