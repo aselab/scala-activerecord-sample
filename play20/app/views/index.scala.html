@@ -1,5 +1,15 @@
 @(message: String)
 
-@main("Welcome to Play 2.0") {
-  @message
+@main("Index page") {
+  <div class="hero-unit">
+    <h1>@message</h1>
+  </div>
+
+  <h2>CRUD Sample</h2>
+  <div class="span4">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active"><a href="/user">User</a></li>
+      <!-- <li><a href="/group">Group</a></li> -->
+    </ul>
+  </div>
 }

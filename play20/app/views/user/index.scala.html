@@ -1,0 +1,50 @@
+@(users: List[models.User])
+
+@main("User list") {
+  <ul class="breadcrumb">
+   <li>
+     <a href="/">Home</a>
+     <span class="divider">/</span>
+   </li>
+   <li class="active">User</li>
+  </ul>
+
+  <h1>Users</h1>
+  <hr/>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @users.map { u =>
+        <tr>
+          <td><a href="/user/@u.id">@u.name</a></td>
+          <td>@u.age</td>
+          <td>@u.description.take(10)</td>
+          <td>
+            <a href="/user/@u.id/edit" class="btn btn-mini">Edit</a>
+            <a href="#" data-redirect="/user" data-target="/user/@u.id" class="btn btn-mini btn-danger">Destroy</a>
+          </td>
+        </tr>
+      }
+      @if(users.isEmpty) {
+        <tr>
+          <td colspan="4">
+            <div class="alert alert-info">
+              <h3>Data is nothing.</h3>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="form-actions">
+    <a href="/user/new" class="btn btn-primary">Create</a>
+  </div>
+}

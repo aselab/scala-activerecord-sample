@@ -1,0 +1,27 @@
+@(user: Form[models.User], action: Call, buttonLabel: String)
+
+@import helper._
+@import views.helpers.BootstrapHelper._
+
+@main("User edit") {
+  <ul class="breadcrumb">
+   <li>
+     <a href="/">Home</a>
+     <span class="divider">/</span>
+   </li>
+   <li class="active">User</li>
+  </ul>
+  <h1>User</h1>
+  <hr/>
+  @form(action) {
+    <fieldset>
+      @inputText(user("name"), '_label -> "Name")
+      @inputText(user("age"), '_label -> "Age")
+      @textarea(user("description"), '_label -> "Description")
+    </fieldset>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">@buttonLabel</button>
+      <a href="/user" class="btn">Cancel</a>
+    </div>
+  }
+}

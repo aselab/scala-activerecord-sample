@@ -1,0 +1,34 @@
+@(user: models.User)
+
+@main("User info") {
+  <ul class="breadcrumb">
+   <li>
+     <a href="/">Home</a>
+     <span class="divider">/</span>
+   </li>
+   <li class="active">User</li>
+  </ul>
+
+  <h1>User</h1>
+  <hr/>
+  <div class="span8">
+    <p>
+      <b>Name</b><br/>
+      <pre>@user.name</pre>
+    </p>
+    <p>
+      <b>Age</b><br/>
+      <pre>@user.age</pre>
+    </p>
+    <p>
+      <b>Description</b><br/>
+      <pre>@user.description.getOrElse("")</pre>
+    </p>
+
+    <div class="form-actions">
+      <a href="/user" class="btn">Back</a>
+      <a href="/user/@user.id/edit" class="btn">Edit</a>
+      <a href="#" data-redirect="/user" data-target="/user/@user.id" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+}
