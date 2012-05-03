@@ -11,20 +11,18 @@ import com.github.aselab.activerecord.ActiveRecord
 
 object Users extends Controller {
 
-  def userForm(id: Long = 0L) = Form(
+  def userForm(user: User = new User) = Form(
     mapping(
       "name" -> nonEmptyText(maxLength = 128),
       "age" -> number(max = 999),
       "description" -> optional(text(maxLength = 3000))
     )((name, age, description) => {
-      val u = User(name, age, description)
-      // set id for update...
-      val f = classOf[ActiveRecord].getDeclaredField("id")
-      f.setAccessible(true)
-      f.set(u, id)
-      u
+      user.name = name
+      user.age = age
+      user.description = description
+      user
     })(User.unapply)
-  )
+  ).fill(user)
 
   def index = Action {
     Ok(view.index(User.all.toList))
@@ -52,18 +50,22 @@ object Users extends Controller {
 
   def edit(id: Long) = Action {
     User(id) match {
-      case Some(user) => Ok(view.edit(userForm(id).fill(user), routes.Users.update(id), "Update", "User edit"))
+      case Some(user) => Ok(view.edit(userForm(user), routes.Users.update(id), "Update", "User edit"))
       case _ => NotFound
     }
   }
 
   def update(id: Long) = Action { implicit request =>
-    userForm(id).bindFromRequest.fold(
-      errors => BadRequest(view.edit(errors, routes.Users.update(id), "Update", "User edit")), {
-      user =>
-        transaction { user.save }
-        Redirect(routes.Users.index)
-    })
+    User(id) match {
+      case Some(user) =>
+        userForm(user).bindFromRequest.fold(
+          errors => BadRequest(view.edit(errors, routes.Users.update(id), "Update", "User edit")), {
+          user =>
+            transaction { user.save }
+            Redirect(routes.Users.index)
+        })
+      case _ => NotFound
+    }
   }
 
   def delete(id: Long) = Action {
