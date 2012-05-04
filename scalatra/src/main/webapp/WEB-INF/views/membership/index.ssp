@@ -1,0 +1,16 @@
+<%@ val projects: List[models.Project] %>
+<%@ val users: List[models.User] %>
+<%@ val roles: List[models.Role] %>
+
+<ul class="breadcrumb">
+ <li>
+   <a href="/">Home</a>
+   <span class="divider">/</span>
+ </li>
+ <li class="active">Membership</li>
+</ul>
+
+<h1>Memberships</h1>
+<hr/>
+
+

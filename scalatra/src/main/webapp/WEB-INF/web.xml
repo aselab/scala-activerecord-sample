@@ -28,6 +28,14 @@
     <url-pattern>/role/*</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>MembershipController</servlet-name>
+    <servlet-class>controllers.MembershipController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MembershipController</servlet-name>
+    <url-pattern>/membership/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>MainController</servlet-name>
     <servlet-class>controllers.MainController</servlet-class>
   </servlet>

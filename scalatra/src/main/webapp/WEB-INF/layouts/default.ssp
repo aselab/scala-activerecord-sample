@@ -57,6 +57,7 @@
               <li><a href="/user">User</a></li>
               <li><a href="/project">Project</a></li>
               <li><a href="/role">Role</a></li>
+              <li><a href="/membership">Membership</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
