@@ -2,7 +2,7 @@ package controllers
 
 import org.scalatra.ScalatraServlet
 
-class MainController extends ScalatraServlet with UserController {
+class MainController extends ScalatraServlet with ApplicationController {
   get("/") {
     contentType = "text/html"
     layoutTemplate("/WEB-INF/views/index.ssp",

@@ -6,8 +6,19 @@
 
 <h2>CRUD Sample</h2>
 <div class="span4">
-<ul class="nav nav-pills nav-stacked">
-  <li class="active"><a href="/user">User</a></li>
-  <!-- <li><a href="/group">Group</a></li> -->
+<ul id="crud_menu" class="nav nav-pills nav-stacked">
+  <li><a href="/user">User</a></li>
+  <li><a href="/project">Project</a></li>
+  <li><a href="/role">Role</a></li>
 </ul>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#crud_menu li").mouseover(function() {
+      $(this).addClass("active");
+    }).mouseout(function() {
+      $(this).removeClass("active");
+    });
+  });
+</script>

@@ -23,7 +23,12 @@
   <script src="/js/jquery-1.7.2.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      $((location.href.indexOf("/user") != -1) ? "#menu_user" : "#menu_home").addClass("active");
+      $.each($("#menu li").get().reverse(), function() {
+        if (location.href.indexOf($(this).find("a").attr("href")) >= 0) {
+          $(this).addClass("active");
+          return false;
+        }
+      });
 
       $(".btn-danger").click(function(){
         var result = confirm("Are you sure?");
@@ -48,9 +53,11 @@
         <div class="container">
           <a class="brand" href="/">Scalatra Sample</a>
           <div class="nav-collapse">
-            <ul class="nav">
+            <ul id="menu" class="nav">
               <li id="menu_home"><a href="/">Home</a></li>
               <li id="menu_user"><a href="/user">User</a></li>
+              <li id="menu_project"><a href="/project">Project</a></li>
+              <li id="menu_role"><a href="/role">Role</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

@@ -1,0 +1,23 @@
+<%@ val role: models.Role %>
+<ul class="breadcrumb">
+ <li>
+   <a href="/">Home</a>
+   <span class="divider">/</span>
+ </li>
+ <li class="active">Role</li>
+</ul>
+
+<h1>Role</h1>
+<hr/>
+<div class="span8">
+  <p>
+    <b>Name</b><br/>
+    <pre>${role.name}</pre>
+  </p>
+
+  <div class="form-actions">
+    <a href="/role" class="btn">Back</a>
+    <a href="/role/${role.id}/edit" class="btn">Edit</a>
+    <a href="#" data-redirect="/role" data-target="/role/${role.id}" class="btn btn-danger">Delete</a>
+  </div>
+</div>
