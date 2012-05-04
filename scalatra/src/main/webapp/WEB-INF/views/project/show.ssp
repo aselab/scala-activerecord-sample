@@ -1,10 +1,12 @@
 <%@ val project: models.Project %>
 <ul class="breadcrumb">
  <li>
-   <a href="/">Home</a>
-   <span class="divider">/</span>
+   <a href="/">Home</a><span class="divider">/</span>
  </li>
- <li class="active">Project</li>
+ <li>
+   <a href="/project">Project</a><span class="divider">/</span>
+ </li>
+ <li class="active">${project.name}</li>
 </ul>
 
 <h1>Project</h1>

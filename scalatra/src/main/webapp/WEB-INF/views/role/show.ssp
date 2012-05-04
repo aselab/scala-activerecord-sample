@@ -1,10 +1,12 @@
 <%@ val role: models.Role %>
 <ul class="breadcrumb">
  <li>
-   <a href="/">Home</a>
-   <span class="divider">/</span>
+   <a href="/">Home</a><span class="divider">/</span>
  </li>
- <li class="active">Role</li>
+ <li>
+   <a href="/role">Role</a><span class="divider">/</span>
+ </li>
+ <li class="active">${role.name}</li>
 </ul>
 
 <h1>Role</h1>

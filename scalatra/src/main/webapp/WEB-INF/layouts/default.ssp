@@ -23,7 +23,7 @@
   <script src="/js/jquery-1.7.2.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      $.each($("#menu li").get().reverse(), function() {
+      $("#menu li").each(function() {
         if (location.href.indexOf($(this).find("a").attr("href")) >= 0) {
           $(this).addClass("active");
           return false;
@@ -54,10 +54,9 @@
           <a class="brand" href="/">Scalatra Sample</a>
           <div class="nav-collapse">
             <ul id="menu" class="nav">
-              <li id="menu_home"><a href="/">Home</a></li>
-              <li id="menu_user"><a href="/user">User</a></li>
-              <li id="menu_project"><a href="/project">Project</a></li>
-              <li id="menu_role"><a href="/role">Role</a></li>
+              <li><a href="/user">User</a></li>
+              <li><a href="/project">Project</a></li>
+              <li><a href="/role">Role</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

@@ -4,10 +4,12 @@
 
 <ul class="breadcrumb">
  <li>
-   <a href="/">Home</a>
-   <span class="divider">/</span>
+   <a href="/">Home</a><span class="divider">/</span>
  </li>
- <li class="active">Project</li>
+ <li>
+   <a href="/project">Project</a><span class="divider">/</span>
+ </li>
+ <li class="active">${if (project.isNewInstance) "New project" else project.name}</li>
 </ul>
 <h1>Project</h1>
 <hr/>

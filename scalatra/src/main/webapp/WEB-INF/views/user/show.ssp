@@ -1,10 +1,12 @@
 <%@ val user: models.User %>
 <ul class="breadcrumb">
  <li>
-   <a href="/">Home</a>
-   <span class="divider">/</span>
+   <a href="/">Home</a><span class="divider">/</span>
  </li>
- <li class="active">User</li>
+ <li>
+   <a href="/user">User</a><span class="divider">/</span>
+ </li>
+ <li class="active">${user.name}</li>
 </ul>
 
 <h1>User</h1>
