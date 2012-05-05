@@ -1,6 +1,12 @@
 <%@ val projects: List[models.Project] %>
 <%@ val users: List[models.User] %>
 <%@ val roles: List[models.Role] %>
+<%@ val memberships: List[models.Membership] %>
+
+<%
+  import net.liftweb.json._
+  implicit val formats = DefaultFormats
+%>
 
 <ul class="breadcrumb">
  <li>
@@ -10,7 +16,129 @@
  <li class="active">Membership</li>
 </ul>
 
-<h1>Memberships</h1>
-<hr/>
+<div class="row">
+  <div class="span4">
+    <h2>Projects</h2>
+    <ul id="projects" class="nav nav-pills nav-stacked">
+      #for (p <- projects)
+      <li><a href="#" data-project-id="${p.id}">${p.name}</a></li>
+      #end
+    </ul>
+  </div>
+  <div id="membership-area" class="span8" style="display: none">
+    <h2>Memberships</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        #for (u <- users)
+        <tr>
+          <td><input type="checkbox" value="${u.id}"/> ${u.name}</td>
+          <td>
+            <div class="btn-group" data-toggle="buttons-radio">
+              #for (r <- roles)
+              <button class="btn" data-role-id="${r.id}">${r.name}</button>
+              #end
+            </div>
+          </td>
+        </tr>
+        #end
+      </tbody>
+    </table>
 
+    <div class="form-actions">
+      <button id="save-button" class="btn btn-primary">Save</button>
+    </div>
+  </div>
+</div>
 
+<script type="text/javascript">
+  $(document).ready(function() {
+    var memberships = $.parseJSON('<%= unescape(compact(render(
+      Extraction.decompose(memberships.groupBy(m => m.projectId).map {
+        case (projectId, list) => (projectId.toString, list)
+      })
+    ))) %>');
+    var currentProject;
+
+    function commitProject(project) {
+      var data = memberships[project] = [];
+      
+      $("tbody input:checked").each(function() {
+        var checkbox = $(this);
+        var d = {userId: parseInt(checkbox.val())};
+        var roleId = checkbox.parent().next().find("button.active").data("roleId");
+        if (roleId) d.roleId = roleId;
+        data.push(d);
+      });
+    }
+
+    function changeProject(project) {
+      var data = memberships[project];
+      if (!data) data = memberships[project] = [];
+      var tbody = $("tbody");
+
+      tbody.find(":checkbox").attr("checked", false).change();
+      tbody.find("button.btn").removeClass("active");
+
+      $.each(data, function() {
+        var checkbox = tbody.find(":checkbox[value=" + this.userId + "]")
+          .attr("checked", true).change();
+        var roleId = this.roleId;
+
+        if (roleId) checkbox.parent().next().find("button.btn").each(function(){
+          var button = $(this);
+          if (button.data("roleId") == roleId) {
+            button.addClass("active");
+            return false;
+          }
+        });
+      });
+    }
+
+    $("#projects a").click(function() {
+      $("#projects li").removeClass("active");
+      $(this).parent().addClass("active");
+
+      if (currentProject) commitProject(currentProject);
+      currentProject = $(this).data("projectId");
+      changeProject(currentProject);
+      $("#membership-area").show();
+      return false;
+    });
+
+    $("tbody :checkbox").change(function() {
+      var roles = $(this).parent().next().find(".btn-group")
+      this.checked ? roles.show() : roles.hide();
+    });
+
+    $("#save-button").click(function() {
+      commitProject(currentProject);
+      var data = [];
+      for (var projectId in memberships) {
+        projectId = parseInt(projectId);
+        $.each(memberships[projectId], function() {
+          var d = {projectId: projectId, userId: this.userId};
+          if (this.roleId) d.roleId = this.roleId;
+          data.push(d);
+        });
+      }
+
+      $.ajax({
+        contentType: "application/json; charset=utf-8",
+        type: "POST",
+        url: "/membership",
+        dataType: "json",
+        data: $.toJSON(data),
+        success: function() {
+        },
+        error: function() {
+        }
+      });
+    });
+  });
+</script>

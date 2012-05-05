@@ -20,6 +20,7 @@ libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra" % "2.0.4",
   "org.scalatra" %% "scalatra-scalate" % "2.0.4",
   "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
-  "org.eclipse.jetty" % "jetty-webapp" % "8.1.0.v20120127" % "container"
+  "org.eclipse.jetty" % "jetty-webapp" % "8.1.0.v20120127" % "container",
+  "net.liftweb" %% "lift-json" % "2.4"
 )
 
