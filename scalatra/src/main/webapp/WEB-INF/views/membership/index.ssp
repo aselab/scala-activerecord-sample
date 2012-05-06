@@ -51,7 +51,7 @@
     </table>
 
     <div class="form-actions">
-      <button id="save-button" class="btn btn-primary">Save</button>
+      <button id="save-button" class="btn btn-primary" data-loading-text="Saving...">Save</button>
     </div>
   </div>
 </div>
@@ -117,6 +117,7 @@
     });
 
     $("#save-button").click(function() {
+      var button = $(this).button("loading");
       commitProject(currentProject);
       var data = [];
       for (var projectId in memberships) {
@@ -135,6 +136,7 @@
         dataType: "json",
         data: $.toJSON(data),
         success: function() {
+          button.button("reset");
         },
         error: function() {
         }
