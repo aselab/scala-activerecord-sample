@@ -1,10 +1,9 @@
 package models
 
 import com.github.aselab.activerecord._
+import com.github.aselab.activerecord.dsl._
 
-case class Project(var name: String) extends ActiveRecord {
-  def this() = this("")
-
+case class Project(@Required var name: String) extends ActiveRecord {
   lazy val users = hasAndBelongsToMany[User]
   lazy val memberships = hasMany[Membership]
 }

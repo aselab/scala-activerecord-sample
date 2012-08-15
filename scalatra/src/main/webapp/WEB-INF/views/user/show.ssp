@@ -6,23 +6,23 @@
  <li>
    <a href="/user">User</a><span class="divider">/</span>
  </li>
- <li class="active">${user.name}</li>
+ <li class="active">${user.login}</li>
 </ul>
 
 <h1>User</h1>
 <hr/>
 <div class="span8">
   <p>
+    <b>Login</b><br/>
+    <pre>${user.login}</pre>
+  </p>
+  <p>
     <b>Name</b><br/>
     <pre>${user.name}</pre>
   </p>
   <p>
-    <b>Age</b><br/>
-    <pre>${user.age}</pre>
-  </p>
-  <p>
-    <b>Description</b><br/>
-    <pre>${user.description.getOrElse("")}</pre>
+    <b>Email</b><br/>
+    <pre>${user.email}</pre>
   </p>
 
   <div class="form-actions">

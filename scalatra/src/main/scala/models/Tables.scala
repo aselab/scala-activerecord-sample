@@ -17,17 +17,11 @@ object Tables extends ActiveRecordTables {
   val projectToMemberships = oneToMany(projects, memberships)
   val roleToMemberships = oneToMany(roles, memberships)
 
-  on(users)(u => declare(
-    u.description is(dbType("varchar(3000)"))
-  ))
-
-
   override def initialize(implicit config: Map[String, Any] = Map()) {
     super.initialize
 
     // Create sample data
-    if (User.count == 0) {
-      (1 to 5).foreach(i => User("user" + i, 20, None).save)
+    if (Project.count == 0) {
       (1 to 3).foreach(i => Project("project" + i).save)
       Seq("administrators", "developers", "users").foreach(s => Role(s).save)
     }

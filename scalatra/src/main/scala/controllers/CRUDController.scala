@@ -27,42 +27,19 @@ abstract class CRUDController[T <: ActiveRecord](
 
   def getId = params.getAs[Long]("id").getOrElse(halt(400))
 
-  // ToDo: Add support for binding from Map[String, String] to ActiveRecord
-  def form(implicit m: T = companion.newInstance) = new {
-    def bind = {
-      import ReflectionUtil._
-      companion.fieldInfo.withFilter {
-        case (name, info) =>
-          !classOf[RecordRelation].isAssignableFrom(info.fieldType)
-      }.foreach {
-        case (name, info) =>
-          val value = params.get(name).map {s =>
-            try {
-              info.fieldType.getSimpleName match {
-                case "String" => s
-                case "Integer" => s.toInt
-              }
-            } catch {
-              case e => halt(400)
-            }
-          }
-          if (info.isOption) m.setValue(name, value)
-          else m.setValue(name, value.getOrElse(halt(400)))
-      }
-      m
-    }
-  }
-
   def index = layoutTemplate(viewsRoot + "index.ssp",
     "title" -> ("Listing " + pluralName),
     pluralName.underscore.camelize -> companion.all.toList
   )
 
   def create =  {
-    val m = form.bind
-    m.save
-    if (!withoutShow) redirect(root + m.id)
-    else redirect(root)
+    val m = companion.bind(params)
+    if (m.save) {
+      if (!withoutShow) redirect(root + m.id)
+      else redirect(root)
+    } else {
+      renderForm(m)
+    }
   }
 
   def show(id: Long) = companion(id) match {
@@ -73,27 +50,39 @@ abstract class CRUDController[T <: ActiveRecord](
     case None => halt(404)
   }
 
-  def add = layoutTemplate(viewsRoot + "edit.ssp",
-    "title" -> ("Create " + modelName),
-    modelName.underscore.camelize -> companion.newInstance,
-    "action" -> root, "buttonLabel" -> "Create"
-  )
+  def renderForm(m: T) = {
+    val d = collection.mutable.Map[String, Any](
+      modelName.underscore.camelize -> m
+    )
+    if (m.isNewInstance) {
+      d("title") = "Create " + modelName
+      d("action") = root
+      d("buttonLabel") = "Create"
+    } else {
+      d("title") = "Update " + modelName
+      d("action") = root + m.id
+      d("buttonLabel") = "Save"
+    }
+    
+    layoutTemplate(viewsRoot + "edit.ssp", d.toSeq:_*)
+  }
+
+  def add = renderForm(companion.newInstance)
 
   def edit(id: Long) = companion(id) match {
-    case Some(m) => layoutTemplate(viewsRoot + "edit.ssp",
-      "title" -> ("Update " + modelName),
-      modelName.underscore.camelize -> m,
-      "action" -> (root + id), "buttonLabel" -> "Save"
-    )
+    case Some(m) => renderForm(m)
     case None => halt(404)
   }
 
   def update(id: Long) = companion(id) match {
     case Some(model) =>
-      val m = form(model).bind
-      m.save
-      if (!withoutShow) redirect(root + id)
-      else redirect(root)
+      val m = companion.bind(params)(model)
+      if (m.save) {
+        if (!withoutShow) redirect(root + id)
+        else redirect(root)
+      } else {
+        renderForm(m)
+      }
 
     case None => halt(404)
   }
