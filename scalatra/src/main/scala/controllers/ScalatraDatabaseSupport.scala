@@ -6,7 +6,7 @@ import javax.servlet.http.{HttpServletRequest, HttpServletResponse}
 import models.Tables
 
 trait ScalatraDatabaseSupport extends Initializable with Handler {
-  abstract override def initialize(config: Config) {
+  abstract override def initialize(config: ConfigT) {
     super.initialize(config)
     Tables.initialize
   }
