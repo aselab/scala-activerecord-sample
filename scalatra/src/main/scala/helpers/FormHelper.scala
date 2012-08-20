@@ -23,7 +23,7 @@ object FormHelper {
       <div class="controls">
         <input type={if (name.contains("password")) "password" else "text"} id={name} name={name} class="input-xlarge" value={value} />
         {if (hasError)
-        <span class="help-inline">{model.errors.get(name).map(e => t.translateMessage(e.message, e.args:_*)).mkString(", ")}</span>
+        <span class="help-inline">{model.errors.get(name).map(_.translate).mkString(", ")}</span>
         }
       </div>
     </div>

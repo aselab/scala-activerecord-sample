@@ -11,8 +11,9 @@ case class User(
   lazy val projects = hasAndBelongsToMany[Project]
   lazy val memberships = hasMany[Membership]
 
+  @Required(on="create")
   @Length(min=8)
-  @Confirm
+  @Confirmation
   @Transient
   var password: String = _
 
