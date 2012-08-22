@@ -13,5 +13,9 @@ class Scalatra extends LifeCycle {
     context mount (new MembershipController, "/membership/*")
     context mount (new MainController, "/*")
   }
+
+  override def destroy(context: ServletContext) {
+    Tables.cleanup
+  }
 }
 
