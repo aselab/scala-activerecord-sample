@@ -3,37 +3,43 @@ package models
 import com.github.aselab.activerecord._
 import com.github.aselab.activerecord.dsl._
 
+import java.sql.Connection
+import org.squeryl.internals.DatabaseAdapter
 import com.typesafe.config._
 import play.api.Play.current
 
 /**
  * Table definition.
  */
-object Tables extends ActiveRecordTables {
+object Tables extends ActiveRecordTables with PlaySupport {
   val users = table[User]("User")
 
   on(users)(u => declare(
     u.description is(dbType("varchar(3000)"))
   ))
+}
 
-  lazy val playConfig = current.configuration
-
+trait PlaySupport { self: ActiveRecordTables =>
   override def loadConfig(config: Map[String, Any]): ActiveRecordConfig =
-    PlayConfig(playConfig.underlying, config, "default")
+    new PlayConfig(config)
 
-  case class PlayConfig(
-    config: Config = ConfigFactory.load(),
-    overrideSettings: Map[String, Any] = Map(),
-    dbMode: String = "default"
-  ) extends AbstractDefaultConfig(config, overrideSettings) {
-    override val env = if (play.api.Play.isProd) "prod" else "dev"
+  class PlayConfig(
+    overrideSettings: Map[String, Any] = Map()
+  ) extends ActiveRecordConfig {
+    def getString(key: String, default: String): String =
+      overrideSettings.get(key).map(_.toString).orElse(
+        current.configuration.getString(key)
+      ).getOrElse(default)
 
-    override def get[T](key: String, getter: String => T): Option[T] = try {
-      Option(getter("%s.%s.%s".format(env, dbMode, key)))
-    } catch {
-      case e: ConfigException.Missing => None
-    }
+    def schemaClass: String =
+      getString("activerecord.schema", "models.Tables")
 
-    override def connection = play.api.db.DB.getConnection(dbMode)
+    def connection: Connection =
+      play.api.db.DB.getConnection("activerecord")
+
+    lazy val adapter: DatabaseAdapter =
+      adapter(getString("db.activerecord.driver", "org.h2.Driver"))
+
+    def translator: i18n.Translator = i18n.DefaultTranslator
   }
 }

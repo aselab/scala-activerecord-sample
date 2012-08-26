@@ -6,7 +6,7 @@ object FormHelper {
   import ReflectionUtil._
   implicit val locale = java.util.Locale.getDefault
 
-  val t = i18n.DefaultTranslator
+  val t = Config.translator
 
   def field[T <: ActiveRecord](name: String, model: T)(implicit m: Manifest[T])=
   {
@@ -19,11 +19,11 @@ object FormHelper {
     val divClass = if (hasError) "control-group error" else "control-group"
 
     <div class={divClass}>
-      <label for={name} class="control-label">{t.translateField(m.erasure, name)}</label>
+      <label for={name} class="control-label">{t.field(m.erasure, name)}</label>
       <div class="controls">
         <input type={if (name.contains("password")) "password" else "text"} id={name} name={name} class="input-xlarge" value={value} />
         {if (hasError)
-        <span class="help-inline">{model.errors.get(name).map(_.translate).mkString(", ")}</span>
+        <span class="help-inline">{model.errors.get(name).map(_.message).mkString(", ")}</span>
         }
       </div>
     </div>
