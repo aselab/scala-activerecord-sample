@@ -52,7 +52,8 @@ abstract class CRUDController[T <: ActiveRecord](
 
   def renderForm(m: T) = {
     val d = collection.mutable.Map[String, Any](
-      modelName.underscore.camelize -> m
+      modelName.underscore.camelize -> m,
+      "locale" -> locale
     )
     if (m.isNewInstance) {
       d("title") = "Create " + modelName

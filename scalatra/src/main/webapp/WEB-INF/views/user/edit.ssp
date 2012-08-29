@@ -1,8 +1,10 @@
 <%@ var user: models.User %>
 <%@ var action: String %>
 <%@ var buttonLabel: String %>
+<%@ val locale: java.util.Locale %>
 
 <% import helpers._ %>
+<% implicit val _locale = locale %>
 
 <ul class="breadcrumb">
  <li>

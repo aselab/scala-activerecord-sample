@@ -1,14 +1,14 @@
 package helpers
 
 import com.github.aselab.activerecord._
+import java.util.Locale
 
 object FormHelper {
   import ReflectionUtil._
-  implicit val locale = java.util.Locale.getDefault
 
   val t = Config.translator
 
-  def field[T <: ActiveRecord](name: String, model: T)(implicit m: Manifest[T])=
+  def field[T <: ActiveRecord](name: String, model: T)(implicit m: Manifest[T], locale: Locale)=
   {
     val value = (model.getValue[Any](name) match {
       case v: Option[_] => v
