@@ -14,18 +14,18 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>Login</th>
         <th>Name</th>
-        <th>Age</th>
-        <th>Description</th>
+        <th>Email</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       @users.map { u =>
         <tr>
-          <td><a href="/user/@u.id">@u.name</a></td>
-          <td>@u.age</td>
-          <td>@u.description.take(10)</td>
+          <td><a href="/user/@u.id">@u.login</a></td>
+          <td>@u.name</td>
+          <td>@u.email</td>
           <td>
             <a href="/user/@u.id/edit" class="btn btn-mini">Edit</a>
             <a href="#" data-redirect="/user" data-target="/user/@u.id" class="btn btn-mini btn-danger">Destroy</a>

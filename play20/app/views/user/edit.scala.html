@@ -15,9 +15,11 @@
   <hr/>
   @form(action) {
     <fieldset>
+      @inputText(user("login"), '_label -> "Login")
+      @inputPassword(user("password"), '_label -> "Password")
+      @inputPassword(user("passwordConfirmation"), '_label -> "Password Confirmation")
       @inputText(user("name"), '_label -> "Name")
-      @inputText(user("age"), '_label -> "Age")
-      @textarea(user("description"), '_label -> "Description")
+      @inputText(user("email"), '_label -> "Email")
     </fieldset>
     <div class="form-actions">
       <button class="btn btn-primary" type="submit">@buttonLabel</button>

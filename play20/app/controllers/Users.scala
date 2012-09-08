@@ -11,17 +11,29 @@ import com.github.aselab.activerecord.ActiveRecord
 
 object Users extends Controller {
 
-  def userForm(user: User = new User) = Form(
-    mapping(
-      "name" -> nonEmptyText(maxLength = 128),
-      "age" -> number(max = 999),
-      "description" -> optional(text(maxLength = 3000))
-    )((name, age, description) => {
-      user.name = name
-      user.age = age
-      user.description = description
-      user
-    })(User.unapply)
+  def UserFormatter(user: User) = new format.Formatter[User] {
+    def bind(key: String, data: Map[String, String]): Either[Seq[FormError], User] = {
+      val u = User.bind(data)(user)
+      if (u.validate) {
+        Right(u)
+      } else {
+        Left(u.errors.toSeq.map(e => FormError(e.key, e.error, e.args.toSeq)))
+      }
+    }
+
+    def unbind(key: String, user: User): Map[String, String] = {
+      if (key.isEmpty) {
+        User.unbind(user)
+      } else {
+        User.unbind(user).map {
+          case (k, v) => ("%s[%s]".format(key, k), v)
+        }
+      }
+    }
+  }
+
+  def userForm(user: User = User.newInstance) = Form(
+    of[User](UserFormatter(user))
   ).fill(user)
 
   def index = Action {

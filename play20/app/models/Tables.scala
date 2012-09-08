@@ -13,10 +13,6 @@ import play.api.Play.current
  */
 object Tables extends ActiveRecordTables with PlaySupport {
   val users = table[User]("User")
-
-  on(users)(u => declare(
-    u.description is(dbType("varchar(3000)"))
-  ))
 }
 
 trait PlaySupport { self: ActiveRecordTables =>

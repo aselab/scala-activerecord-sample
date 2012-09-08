@@ -3,8 +3,9 @@
 # --- !Ups
 create table User (
   name varchar(128) not null,
-  description varchar(3000),
-  age int not null,
+  login varchar(128) not null,
+  email varchar(128),
+  hashedPassword varchar(128),
   id bigint not null primary key auto_increment
 );
 
