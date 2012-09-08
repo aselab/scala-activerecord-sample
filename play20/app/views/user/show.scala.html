@@ -3,8 +3,10 @@
 @main("User info") {
   <ul class="breadcrumb">
    <li>
-     <a href="/">Home</a>
-     <span class="divider">/</span>
+     <a href="/">Home</a><span class="divider">/</span>
+   </li>
+   <li>
+   <a href="@routes.Users.index">User</a><span class="divider">/</span>
    </li>
    <li class="active">@user.login</li>
   </ul>
@@ -26,9 +28,9 @@
     </p>
 
     <div class="form-actions">
-      <a href="/user" class="btn">Back</a>
-      <a href="/user/@user.id/edit" class="btn">Edit</a>
-      <a href="#" data-redirect="/user" data-target="/user/@user.id" class="btn btn-danger">Delete</a>
+      <a href="@routes.Users.index" class="btn">Back</a>
+      <a href="@routes.Users.edit(user.id)" class="btn">Edit</a>
+      <a href="#" data-redirect="@routes.Users.index" data-target="@routes.Users.delete(user.id)" class="btn btn-danger">Delete</a>
     </div>
   </div>
 }

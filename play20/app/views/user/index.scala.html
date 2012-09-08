@@ -23,12 +23,12 @@
     <tbody>
       @users.map { u =>
         <tr>
-          <td><a href="/user/@u.id">@u.login</a></td>
+          <td><a href="@routes.Users.show(u.id)">@u.login</a></td>
           <td>@u.name</td>
           <td>@u.email</td>
           <td>
-            <a href="/user/@u.id/edit" class="btn btn-mini">Edit</a>
-            <a href="#" data-redirect="/user" data-target="/user/@u.id" class="btn btn-mini btn-danger">Destroy</a>
+            <a href="@routes.Users.edit(u.id)" class="btn btn-mini">Edit</a>
+            <a href="#" data-redirect="@routes.Users.index" data-target="@routes.Users.delete(u.id)" class="btn btn-mini btn-danger">Delete</a>
           </td>
         </tr>
       }
@@ -45,6 +45,6 @@
   </table>
 
   <div class="form-actions">
-    <a href="/user/new" class="btn btn-primary">Create</a>
+    <a href="@routes.Users.newPage" class="btn btn-primary">Create</a>
   </div>
 }
