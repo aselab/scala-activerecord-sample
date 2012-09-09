@@ -47,7 +47,7 @@ object Users extends Controller {
     }
   }
 
-  def newPage = Action {
+  def newPage = Action { implicit request =>
     Ok(view.edit(userForm(), routes.Users.create, "Create", "User create"))
   }
 
@@ -60,7 +60,7 @@ object Users extends Controller {
     })
   }
 
-  def edit(id: Long) = Action {
+  def edit(id: Long) = Action { implicit request =>
     User(id) match {
       case Some(user) => Ok(view.edit(userForm(user), routes.Users.update(id), "Update", "User edit"))
       case _ => NotFound

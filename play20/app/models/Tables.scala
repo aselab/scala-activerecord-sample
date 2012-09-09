@@ -7,6 +7,7 @@ import java.sql.Connection
 import org.squeryl.internals.DatabaseAdapter
 import com.typesafe.config._
 import play.api.Play.current
+import java.util.Locale
 
 /**
  * Table definition.
@@ -36,6 +37,19 @@ trait PlaySupport { self: ActiveRecordTables =>
     lazy val adapter: DatabaseAdapter =
       adapter(getString("db.activerecord.driver", "org.h2.Driver"))
 
-    def translator: i18n.Translator = i18n.DefaultTranslator
+    def translator: i18n.Translator = PlayTranslator
+  }
+
+  object PlayTranslator extends i18n.Translator {
+    import play.api.i18n._
+
+    def get(key: String, args: Any*)(implicit locale: Locale):Option[String] = {
+      implicit val lang = Lang(locale.getLanguage)
+      if (Messages.messages.get(lang.code).exists(_.isDefinedAt(key))) {
+        Some(Messages(key, args:_*))
+      } else {
+        i18n.DefaultTranslator.get(key, args:_*)
+      }
+    }
   }
 }
