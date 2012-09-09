@@ -1,7 +1,9 @@
 @(user: Form[models.User], action: Call, buttonLabel: String, title: String)(implicit lang: Lang)
 
 @import helper._
-@import views.helpers.BootstrapHelper._
+@import views.helpers.ActiveRecordHelper._
+
+@implicitFieldConstructor = @{fieldConstructor(user)}
 
 @main(title) {
   <ul class="breadcrumb">

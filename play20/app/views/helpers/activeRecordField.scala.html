@@ -1,10 +1,11 @@
-@(elements: views.html.helper.FieldElements)
+@(elements: views.html.helper.FieldElements, model: Class[_])
 
 @import play.api.i18n._
 @import views.html.helper._
+@import com.github.aselab.activerecord.Config.translator
 
 <div class="control-group @elements.args.get('_class) @if(elements.hasErrors) {error}" id="@elements.args.get('_id).getOrElse(elements.id + "_field")">
-  <label class="control-label" for="@elements.id">@elements.label(elements.lang)</label>
+  <label class="control-label" for="@elements.id">@translator.field(model, elements.field.name)(elements.lang.toLocale)</label>
   <div class="controls">
     @elements.input
     @if(elements.errors.length > 0) {<span class="help-inline">@elements.errors(elements.lang).mkString(", ")</span>}
