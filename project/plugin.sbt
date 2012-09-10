@@ -4,4 +4,4 @@ resolvers ++= Seq(
   "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/"
 )
 
-libraryDependencies += Defaults.sbtPluginExtra("play" % "sbt-plugin" % "2.1-0627-sbt12", "0.12", "2.9.2")
+libraryDependencies += Defaults.sbtPluginExtra("play" % "sbt-plugin" % "2.1-09092012", "0.12", "2.9.2")
