@@ -13,7 +13,7 @@
    <li>
    <a href="@routes.Users.index">User</a><span class="divider">/</span>
    </li>
-   <li class="active">@(if (action == routes.Users.create) "New user" else user.data("login"))
+   <li class="active">@(if (action == routes.Users.create) "New user" else user.value.map(_.login).getOrElse(user.data("login")))
    </li>
   </ul>
   <h1>User</h1>

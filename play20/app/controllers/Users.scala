@@ -13,19 +13,17 @@ object Users extends Controller {
 
   def UserFormatter(user: User) = new format.Formatter[User] {
     def bind(key: String, data: Map[String, String]): Either[Seq[FormError], User] = {
-      val u = User.bind(data)(user)
-      if (u.validate) {
-        Right(u)
-      } else {
-        Left(u.errors.toSeq.map(e => FormError(e.key, e.error, e.args.toSeq)))
+      User.bind(data)(user) match {
+        case u if u.hasErrors => 
+          Left(u.errors.toSeq.map(e => FormError(e.key, e.error, e.args.toSeq)))
+        case u => Right(u)
       }
     }
 
     def unbind(key: String, user: User): Map[String, String] = {
-      if (key.isEmpty) {
-        User.unbind(user)
-      } else {
-        User.unbind(user).map {
+      User.unbind(user) match {
+        case data if key.isEmpty => data
+        case data => data.map {
           case (k, v) => ("%s[%s]".format(key, k), v)
         }
       }
@@ -55,7 +53,7 @@ object Users extends Controller {
     userForm().bindFromRequest.fold(
       errors => BadRequest(view.edit(errors, routes.Users.create, "Create", "User create")), {
       user =>
-        transaction { user.save }
+        transaction { user.saveWithoutValidation }
         Redirect(routes.Users.show(user.id))
     })
   }
@@ -73,7 +71,7 @@ object Users extends Controller {
         userForm(user).bindFromRequest.fold(
           errors => BadRequest(view.edit(errors, routes.Users.update(id), "Update", "User edit")), {
           user =>
-            transaction { user.save }
+            transaction { user.saveWithoutValidation }
             Redirect(routes.Users.index)
         })
       case _ => NotFound
