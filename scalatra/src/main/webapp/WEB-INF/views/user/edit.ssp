@@ -13,7 +13,7 @@
  <li>
    <a href="/user">User</a><span class="divider">/</span>
  </li>
- <li class="active">${if (user.isNewInstance) "New user" else user.login}</li>
+ <li class="active">${if (user.isNewRecord) "New user" else user.login}</li>
 </ul>
 <h1>User</h1>
 <hr/>
