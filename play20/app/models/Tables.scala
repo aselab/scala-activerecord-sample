@@ -7,7 +7,7 @@ import java.sql.Connection
 import org.squeryl.internals.DatabaseAdapter
 import com.typesafe.config._
 import play.api.Play.current
-import java.util.Locale
+import java.util.{Locale, TimeZone}
 
 /**
  * Table definition.
@@ -38,6 +38,8 @@ trait PlaySupport { self: ActiveRecordTables =>
       adapter(getString("db.activerecord.driver", "org.h2.Driver"))
 
     def translator: i18n.Translator = PlayTranslator
+
+    def timeZone: TimeZone = TimeZone.getDefault
   }
 
   object PlayTranslator extends i18n.Translator {

@@ -9,7 +9,7 @@
  <li>
    <a href="/project">Project</a><span class="divider">/</span>
  </li>
- <li class="active">${if (project.isNewInstance) "New project" else project.name}</li>
+ <li class="active">${if (project.isNewRecord) "New project" else project.name}</li>
 </ul>
 <h1>Project</h1>
 <hr/>

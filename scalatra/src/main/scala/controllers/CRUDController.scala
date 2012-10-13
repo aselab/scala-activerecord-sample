@@ -55,7 +55,7 @@ abstract class CRUDController[T <: ActiveRecord](
       modelName.underscore.camelize -> m,
       "locale" -> locale
     )
-    if (m.isNewInstance) {
+    if (m.isNewRecord) {
       d("title") = "Create " + modelName
       d("action") = root
       d("buttonLabel") = "Create"
