@@ -4,6 +4,7 @@
 <%@ val locale: java.util.Locale %>
 
 <% import helpers._ %>
+<% import twitter.bootstrap.FormHelper._ %>
 <% implicit val _locale = locale %>
 
 <ul class="breadcrumb">
@@ -17,14 +18,18 @@
 </ul>
 <h1>User</h1>
 <hr/>
+
 <form class="form-horizontal" action="${action}" method="post">
-  <fieldset>
-    #for (name <- Seq("login", "password", "passwordConfirmation", "name", "email"))
-      <%= FormHelper.field(name, user) %>
-    #end
+  <% fieldset(user) { f => %>
+    <%= f.input("login") %>
+    <%= f.input("password") %>
+    <%= f.input("passwordConfirmation") %>
+    <%= f.input("name") %>
+    <%= f.input("email") %>
+
     <div class="form-actions">
-      <button class="btn btn-primary" type="submit">${buttonLabel}</button>
-      <a href="/user" class="btn">Cancel</a>
+      <%= f.submit(buttonLabel) %>
+      <%= f.cancel %>
     </div>
-  </fieldset>
+  <% } %>
 </form>
