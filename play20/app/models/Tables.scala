@@ -13,7 +13,7 @@ import java.util.{Locale, TimeZone}
  * Table definition.
  */
 object Tables extends ActiveRecordTables with PlaySupport {
-  val users = table[User]("User")
+  val users = table[User]
 }
 
 trait PlaySupport { self: ActiveRecordTables =>

@@ -14,6 +14,7 @@ abstract class CRUDController[T <: ActiveRecord](
   
   val companion = ReflectionUtil.classToCompanion(m.erasure)
     .asInstanceOf[ActiveRecordCompanion[T]]
+  import companion._
 
   val modelName = m.erasure.getSimpleName
   val pluralName = modelName.pluralize
