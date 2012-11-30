@@ -17,7 +17,6 @@ case class User(
   @Transient
   var password: String = _
 
-  @Transient
   var passwordConfirmation: String = _
 
   var hashedPassword: String = _
