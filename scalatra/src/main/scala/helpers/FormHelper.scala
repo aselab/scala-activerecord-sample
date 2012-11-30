@@ -5,6 +5,8 @@ import java.util.Locale
 
 import scala.xml._
 import mojolly.inflector.InflectorImports._
+import org.fusesource.scalate._
+import RenderContext._
 
 trait FormHelper {
   implicit def toExtendElem(elem: Elem) = new {
@@ -108,9 +110,8 @@ object FormHelper {
     val inputDataFactory = new InputDataFactory {}
   }
 
-  def fieldset[T <: ActiveRecord](model: T)(code: => DefaultFormHelper[T] => Unit)(implicit m: Manifest[T]) = {
-    code(Helper(model, m))
-  }
+  def form[T <: ActiveRecord](model: T, action: String)(code: => DefaultFormHelper[T] => Unit)(implicit m: Manifest[T], renderContext: RenderContext) =
+    renderContext.unescape("""<form class="form-horizontal" action="%s" method="post">""".format(action) + capture(code(Helper(model, m))) + "</form>")
 }
 
 package twitter.bootstrap {
@@ -142,8 +143,8 @@ package twitter.bootstrap {
       val inputDataFactory = new InputDataFactory {}
     }
 
-    def fieldset[T <: ActiveRecord](model: T)(code: => DefaultFormHelper[T] => Unit)(implicit m: Manifest[T]) =
-      code(Helper(model, m))
+    def form[T <: ActiveRecord](model: T, action: String)(code: => DefaultFormHelper[T] => Unit)(implicit m: Manifest[T], renderContext: RenderContext) =
+      renderContext.unescape("""<form class="form-horizontal" action="%s" method="post">""".format(action) + capture(code(Helper(model, m))) + "</form>")
   }
 }
 

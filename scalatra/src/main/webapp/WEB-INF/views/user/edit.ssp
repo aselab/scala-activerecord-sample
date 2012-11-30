@@ -19,17 +19,15 @@
 <h1>User</h1>
 <hr/>
 
-<form class="form-horizontal" action="${action}" method="post">
-  <% fieldset(user) { f => %>
-    <%= f.input("login") %>
-    <%= f.input("password") %>
-    <%= f.input("passwordConfirmation") %>
-    <%= f.input("name") %>
-    <%= f.input("email") %>
+<%= form(user, action)( f => { %>
+  <%= f.input("login") %>
+  <%= f.input("password") %>
+  <%= f.input("passwordConfirmation") %>
+  <%= f.input("name") %>
+  <%= f.input("email") %>
 
-    <div class="form-actions">
-      <%= f.submit(buttonLabel) %>
-      <%= f.cancel %>
-    </div>
-  <% } %>
-</form>
+  <div class="form-actions">
+    <%= f.submit(buttonLabel) %>
+    <%= f.cancel %>
+  </div>
+<% }) %>
