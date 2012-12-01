@@ -1,0 +1,38 @@
+@(user: models.User, action: String, buttonLabel: String, title: String)(implicit locale: java.util.Locale)
+
+@main(title) {
+  <ul class="breadcrumb">
+   <li>
+     <a href="/">Home</a><span class="divider">/</span>
+   </li>
+   <li>
+   <a href="/user">User</a><span class="divider">/</span>
+   </li>
+   <li class="active">@if(user.isNewRecord) { New user } else { @user.login }</li>
+   </li>
+  </ul>
+  <h1>User</h1>
+  <hr/>
+  @** TODO **@
+  <form class="form-horizontal" action="@action" method="post">
+    <div class="control-group string input optinal stringish" id="user_login_input">
+    <label class="control-label" for="user_login">ログインID</label>
+    <div class="controls"><input type="text" maxlength="255" id="user_login" name="login" value="@user.login"></input></div></div>
+    <div class="control-group string input optinal stringish" id="user_password_input">
+    <label class="control-label" for="user_password">パスワード</label>
+    <div class="controls"><input type="text" maxlength="255" id="user_password" name="password" value="@user.password"></input></div></div>
+    <div class="control-group string input optinal stringish" id="user_passwordConfirmation_input">
+    <label class="control-label" for="user_passwordConfirmation">パスワード(確認)</label>
+    <div class="controls"><input type="text" maxlength="255" id="user_passwordConfirmation" name="passwordConfirmation" value="@user.passwordConfirmation"></input></div></div>
+    <div class="control-group string input optinal stringish" id="user_name_input">
+    <label class="control-label" for="user_name">名前</label>
+    <div class="controls"><input type="text" maxlength="255" id="user_name" name="name" value="@user.name"></input></div></div>
+    <div class="control-group string input optinal stringish" id="user_email_input">
+    <label class="control-label" for="user_email">メールアドレス</label>
+    <div class="controls"><input type="text" maxlength="255" id="user_email" name="email" value="@user.email"></input></div></div>
+    <div class="form-actions">
+      <input value="@buttonLabel" type="submit" class="btn btn-primary"></input>
+      <a class="btn" href="/user">Cancel</a>
+    </div>
+  </form>
+}

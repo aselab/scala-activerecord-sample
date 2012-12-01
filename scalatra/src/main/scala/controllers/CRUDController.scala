@@ -3,6 +3,8 @@ package controllers
 import org.scalatra.ScalatraServlet
 import com.github.aselab.activerecord._
 import mojolly.inflector.InflectorImports._
+import java.util.Locale
+import twirl.api._
 
 abstract class CRUDController[T <: ActiveRecord](
   withoutIndex: Boolean = false,
@@ -11,7 +13,7 @@ abstract class CRUDController[T <: ActiveRecord](
   withoutUpdate: Boolean = false,
   withoutDestroy: Boolean = false
 )(implicit m: Manifest[T]) extends ScalatraServlet with ApplicationController {
-  
+
   val companion = ReflectionUtil.classToCompanion(m.erasure)
     .asInstanceOf[ActiveRecordCompanion[T]]
   import companion._
@@ -20,18 +22,23 @@ abstract class CRUDController[T <: ActiveRecord](
   val pluralName = modelName.pluralize
 
   val root = "/" + modelName.underscore + "/"
-  val viewsRoot = "/WEB-INF/views" + root
 
   before("/*") {
     contentType = "text/html"
   }
 
+  def template[A](viewName: String) = {
+    val classLoader = getClass.getClassLoader
+    val viewClassName = "views.%s.html.%s$".format(pluralName.underscore.camelize, viewName)
+    val viewObject = classLoader.loadClass(viewClassName).getField("MODULE$").get(null)
+    viewObject.asInstanceOf[A]
+  }
+
+  def template1[A](viewName: String) = template[Template1[A, Html]](viewName)
+
   def getId = params.getAs[Long]("id").getOrElse(halt(400))
 
-  def index = layoutTemplate(viewsRoot + "index.ssp",
-    "title" -> ("Listing " + pluralName),
-    pluralName.underscore.camelize -> companion.all.toList
-  )
+  def index = template1[List[T]]("index").render(companion.all.toList)
 
   def create =  {
     val m = companion.bind(params)
@@ -44,29 +51,16 @@ abstract class CRUDController[T <: ActiveRecord](
   }
 
   def show(id: Long) = companion(id) match {
-    case Some(m) => layoutTemplate(viewsRoot + "show.ssp",
-      "title" -> ("Show " + modelName),
-      modelName.underscore.camelize -> m
-    )
+    case Some(m) => template1[T]("show").render(m)
     case None => halt(404)
   }
 
   def renderForm(m: T) = {
-    val d = collection.mutable.Map[String, Any](
-      modelName.underscore.camelize -> m,
-      "locale" -> locale
-    )
-    if (m.isNewRecord) {
-      d("title") = "Create " + modelName
-      d("action") = root
-      d("buttonLabel") = "Create"
-    } else {
-      d("title") = "Update " + modelName
-      d("action") = root + m.id
-      d("buttonLabel") = "Save"
-    }
-    
-    layoutTemplate(viewsRoot + "edit.ssp", d.toSeq:_*)
+    val title = (if (m.isNewRecord) "Create " else "Update ") + modelName
+    val action = root + (if (m.isNewRecord) "" else m.id)
+    val buttonLabel = if (m.isNewRecord) "Create" else "Save"
+    val formTemplate = template[Template5[T, String, String, String, Locale, Html]]("edit")
+    formTemplate.render(m, action, buttonLabel, title, locale)
   }
 
   def add = renderForm(companion.newInstance)

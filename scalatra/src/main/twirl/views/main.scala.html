@@ -1,30 +1,26 @@
-<%@ var title: String = "Title" %>
-<%@ var body: String = "Custom Layout" %>
+@(title: String)(content: Html)
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>${title}</title>
+  <head>
+    <meta charset="utf-8">
+    <title>@title</title>
 
-  <!-- Le styles -->
-  <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
-  <style type="text/css">
-    body {
-      padding-top: 60px;
-      padding-bottom: 40px;
-    }
-  </style>
-  <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Le styles -->
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <script src="/js/jquery-1.8.0.min.js"></script>
-  <script src="/js/jquery.json-2.3.min.js"></script>
-  <script src="/bootstrap/js/bootstrap.js"></script>
-  <script src="/bootstrap/js/bootstrap-button.js"></script>
-  <script type="text/javascript">
+    <script src="/js/jquery-1.8.0.min.js"></script>
+    <script src="/js/jquery.json-2.3.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.js"></script>
+    <script src="/bootstrap/js/bootstrap-button.js"></script>
+    <script type="text/javascript">
     $(document).ready(function(){
       $("#menu li").each(function() {
         if (location.href.indexOf($(this).find("a").attr("href")) >= 0) {
@@ -49,7 +45,7 @@
       });
     });
   </script>
-</head>
+  </head>
   <body>
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -68,7 +64,7 @@
     </div>
 
     <div class="container">
-      ${unescape(body)}
+      @content
     </div><!-- /container -->
 
   </body>

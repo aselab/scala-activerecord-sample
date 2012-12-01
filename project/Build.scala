@@ -1,6 +1,7 @@
 import sbt._
 import Keys._
 import PlayProject._
+import twirl.sbt.TwirlPlugin._
 
 object ScalaActiveRecordSample extends Build {
   lazy val simple = Project("simple", file("simple/"))

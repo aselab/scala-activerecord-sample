@@ -10,11 +10,11 @@ class MembershipController extends ScalatraServlet with ApplicationController {
   }
 
   get("/") {
-    layoutTemplate("/WEB-INF/views/membership/index.ssp",
-      "projects" -> Project.all.toList,
-      "users" -> User.all.toList,
-      "roles" -> Role.all.toList,
-      "memberships" -> Membership.all.toList
+    views.membership.html.index(
+      Project.all.toList,
+      User.all.toList,
+      Role.all.toList,
+      Membership.all.toList
     )
   }
 
