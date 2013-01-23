@@ -1,5 +1,6 @@
 package controllers
 
+import com.github.aselab.activerecord.dsl._
 import org.scalatra.ScalatraServlet
 import net.liftweb.json._
 import models._

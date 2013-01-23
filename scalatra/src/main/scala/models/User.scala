@@ -8,8 +8,8 @@ case class User(
   @Required @Unique var login: String,
   @Email var email: String
 ) extends ActiveRecord {
-  lazy val projects = hasAndBelongsToMany[Project]
   lazy val memberships = hasMany[Membership]
+  lazy val projects = hasManyThrough[Project, Membership](memberships)
 
   @Required(on="create")
   @Length(min=8)
@@ -35,6 +35,6 @@ object User extends ActiveRecordCompanion[User] {
   }
 
   def authenticate(login: String, password: String): Option[User] = {
-    findBy("login", login).filter(u => u.hashedPassword == md5digest(password))
+    this.findBy("login" -> login, "hashedPassword" -> md5digest(password))
   }
 }

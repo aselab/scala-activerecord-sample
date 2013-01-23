@@ -2,6 +2,7 @@ package controllers
 
 import org.scalatra.ScalatraServlet
 import com.github.aselab.activerecord._
+import com.github.aselab.activerecord.dsl._
 import mojolly.inflector.InflectorImports._
 
 abstract class CRUDController[T <: ActiveRecord](
@@ -14,7 +15,6 @@ abstract class CRUDController[T <: ActiveRecord](
   
   val companion = ReflectionUtil.classToCompanion(m.erasure)
     .asInstanceOf[ActiveRecordCompanion[T]]
-  import companion._
 
   val modelName = m.erasure.getSimpleName
   val pluralName = modelName.pluralize
@@ -30,7 +30,7 @@ abstract class CRUDController[T <: ActiveRecord](
 
   def index = layoutTemplate(viewsRoot + "index.ssp",
     "title" -> ("Listing " + pluralName),
-    pluralName.underscore.camelize -> companion.all.toList
+    pluralName.underscore.camelize -> companion.toList
   )
 
   def create =  {
@@ -43,7 +43,7 @@ abstract class CRUDController[T <: ActiveRecord](
     }
   }
 
-  def show(id: Long) = companion(id) match {
+  def show(id: Long) = companion.find(id) match {
     case Some(m) => layoutTemplate(viewsRoot + "show.ssp",
       "title" -> ("Show " + modelName),
       modelName.underscore.camelize -> m
@@ -71,12 +71,12 @@ abstract class CRUDController[T <: ActiveRecord](
 
   def add = renderForm(companion.newInstance)
 
-  def edit(id: Long) = companion(id) match {
+  def edit(id: Long) = companion.find(id) match {
     case Some(m) => renderForm(m)
     case None => halt(404)
   }
 
-  def update(id: Long) = companion(id) match {
+  def update(id: Long) = companion.find(id) match {
     case Some(model) =>
       val m = companion.bind(params)(model)
       if (m.errors.isEmpty && m.saveWithoutValidation) {
@@ -89,7 +89,7 @@ abstract class CRUDController[T <: ActiveRecord](
     case None => halt(404)
   }
 
-  def destroy(id: Long) = companion(id) match {
+  def destroy(id: Long) = companion.find(id) match {
     case Some(m) => m.delete
     case None => halt(404)
   }

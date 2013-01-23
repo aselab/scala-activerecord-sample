@@ -32,6 +32,6 @@ object User extends ActiveRecordCompanion[User] {
   }
 
   def authenticate(login: String, password: String): Option[User] = {
-    findBy("login", login).filter(u => u.hashedPassword == md5digest(password))
+    this.findBy("login" -> login, "hashedPassword" -> md5digest(password))
   }
 }

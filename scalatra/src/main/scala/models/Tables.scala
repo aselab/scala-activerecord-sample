@@ -16,11 +16,6 @@ object Tables extends ActiveRecordTables with ScalatraSupport with InitialData {
   val projects = table[Project]
   val roles = table[Role]
   val memberships = table[Membership]
-
-  val usersToProjects = manyToMany(users, memberships, projects)
-  val userToMemberships = oneToMany(users, memberships)
-  val projectToMemberships = oneToMany(projects, memberships)
-  val roleToMemberships = oneToMany(roles, memberships)
 }
 
 trait ScalatraSupport { self: ActiveRecordTables =>
@@ -50,7 +45,7 @@ trait InitialData extends ActiveRecordTables {
     super.initialize
 
     // Create sample data
-    if (Project.count == 0) {
+    if (Project.all.count == 0) {
       (1 to 3).foreach(i => Project("project" + i).save)
       Seq("administrators", "developers", "users").foreach(s => Role(s).save)
     }

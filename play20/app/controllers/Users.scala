@@ -39,7 +39,7 @@ object Users extends Controller {
   }
 
   def show(id: Long) = Action {
-    User(id) match {
+    User.find(id) match {
       case Some(user) => Ok(view.show(user))
       case _ => NotFound
     }
@@ -59,14 +59,14 @@ object Users extends Controller {
   }
 
   def edit(id: Long) = Action { implicit request =>
-    User(id) match {
+    User.find(id) match {
       case Some(user) => Ok(view.edit(userForm(user), routes.Users.update(id), "Update", "User edit"))
       case _ => NotFound
     }
   }
 
   def update(id: Long) = Action { implicit request =>
-    User(id) match {
+    User.find(id) match {
       case Some(user) =>
         userForm(user).bindFromRequest.fold(
           errors => BadRequest(view.edit(errors, routes.Users.update(id), "Update", "User edit")), {
@@ -79,7 +79,7 @@ object Users extends Controller {
   }
 
   def delete(id: Long) = Action {
-    User(id) match {
+    User.find(id) match {
       case Some(user) =>
         transaction { user.delete }
         Ok
