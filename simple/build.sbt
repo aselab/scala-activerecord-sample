@@ -6,14 +6,11 @@ version := "0.2-SNAPSHOT"
 
 scalaVersion := "2.9.2"
 
-resolvers ++= Seq(
-  "aselab repo" at "http://aselab.github.com/maven/",
-  "typesafe repo" at "http://repo.typesafe.com/typesafe/releases/"
-)
+resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 
 libraryDependencies ++= Seq(
   "com.github.aselab" % "scala-activerecord" % "0.2-SNAPSHOT",
-  "com.h2database" % "h2" % "1.3.168",
+  "com.h2database" % "h2" % "1.3.170",
   "org.slf4j" % "slf4j-nop" % "1.7.0"
 )
 

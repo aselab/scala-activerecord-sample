@@ -1,5 +1,4 @@
 import play.api._
-import com.github.aselab.activerecord._
 
 import models._
 

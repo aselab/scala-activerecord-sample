@@ -7,7 +7,6 @@ import play.api.data.Forms._
 import models._
 import views.html.{user => view}
 import com.github.aselab.activerecord.dsl._
-import com.github.aselab.activerecord.ActiveRecord
 
 object Users extends Controller {
 

@@ -7,9 +7,6 @@ import org.scalatra.scalate.ScalateSupport
 trait ApplicationController extends ScalatraKernel with ScalateSupport
   with ScalatraDatabaseSupport with RichMapSupport
   with I18nSupport with CookieSupport
-{
-}
-
 
 trait RichMapSupport {
   case class Converter[T](f: String => T)

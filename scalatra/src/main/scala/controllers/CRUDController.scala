@@ -30,7 +30,7 @@ abstract class CRUDController[T <: ActiveRecord](
 
   def index = layoutTemplate(viewsRoot + "index.ssp",
     "title" -> ("Listing " + pluralName),
-    pluralName.underscore.camelize -> companion.toList
+    pluralName.underscore.camelize -> companion.all.toList
   )
 
   def create =  {
@@ -65,7 +65,7 @@ abstract class CRUDController[T <: ActiveRecord](
       d("action") = root + m.id
       d("buttonLabel") = "Save"
     }
-    
+
     layoutTemplate(viewsRoot + "edit.ssp", d.toSeq:_*)
   }
 
