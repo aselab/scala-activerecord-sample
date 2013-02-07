@@ -12,7 +12,6 @@ abstract class CRUDController[T <: ActiveRecord](
   withoutUpdate: Boolean = false,
   withoutDestroy: Boolean = false
 )(implicit m: Manifest[T]) extends ScalatraServlet with ApplicationController {
-  
   val companion = ReflectionUtil.classToCompanion(m.erasure)
     .asInstanceOf[ActiveRecordCompanion[T]]
 
