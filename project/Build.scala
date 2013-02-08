@@ -3,7 +3,7 @@ import Keys._
 import PlayProject._
 
 object ScalaActiveRecordSample extends Build {
-  lazy val simple = Project("simple", file("simple/"))
+  lazy val sample = Project("sample", file("sample/"))
 
   lazy val scalatra = Project("scalatra", file("scalatra/"))
 

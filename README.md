@@ -6,10 +6,10 @@ run sbt.
 $ bin/sbt
 ```
 
-### Simple sample
+### Console application samples
 
 ```
-> simple/run
+> sample/run
 ```
 
 ### Scalatra sample
