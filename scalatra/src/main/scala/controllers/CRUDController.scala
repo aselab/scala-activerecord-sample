@@ -2,6 +2,7 @@ package controllers
 
 import org.scalatra.ScalatraServlet
 import com.github.aselab.activerecord._
+import reflections._
 import com.github.aselab.activerecord.dsl._
 import mojolly.inflector.InflectorImports._
 

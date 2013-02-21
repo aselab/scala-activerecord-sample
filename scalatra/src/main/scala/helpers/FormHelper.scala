@@ -4,7 +4,7 @@ import com.github.aselab.activerecord._
 import java.util.Locale
 
 object FormHelper {
-  import ReflectionUtil._
+  import reflections.ReflectionUtil._
 
   val t = Config.translator
 
