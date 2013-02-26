@@ -41,7 +41,7 @@ trait ScalatraSupport { self: ActiveRecordTables =>
 }
 
 trait InitialData extends ActiveRecordTables {
-  override def initialize(implicit config: Map[String, Any] = Map()) {
+  override def initialize {
     super.initialize
 
     // Create sample data

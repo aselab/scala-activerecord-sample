@@ -20,7 +20,7 @@ $ bin/sbt
 
 The application starts on http://localhost:8080.
 
-### Play! 2.0 sample
+### Play! 2.x sample
 
 ```
 > run
