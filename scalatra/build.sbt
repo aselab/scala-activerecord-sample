@@ -9,7 +9,7 @@ scalaVersion := "2.10.0"
 webSettings
 
 resolvers ++= Seq(
-  "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots",
+  Resolver.sonatypeRepo("snapshots"),
   "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 )
 

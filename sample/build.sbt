@@ -6,7 +6,7 @@ version := "0.2-SNAPSHOT"
 
 scalaVersion := "2.10.0"
 
-resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq(
   "com.github.aselab" %% "scala-activerecord" % "0.2-SNAPSHOT",
