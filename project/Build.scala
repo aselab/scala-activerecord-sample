@@ -8,8 +8,8 @@ object ScalaActiveRecordSample extends Build {
   lazy val scalatra = Project("scalatra", file("scalatra/"))
 
   lazy val appDependencies = Seq(
-    "com.github.aselab" %% "scala-activerecord" % "0.2-SNAPSHOT",
-    "com.github.aselab" %% "scala-activerecord-play2" % "0.2-SNAPSHOT",
+    "com.github.aselab" %% "scala-activerecord" % "0.2.1",
+    "com.github.aselab" %% "scala-activerecord-play2" % "0.2.1",
     "play" %% "play-jdbc" % "2.1.0",
     "com.h2database" % "h2" % "1.3.170"
   )
@@ -19,6 +19,6 @@ object ScalaActiveRecordSample extends Build {
     dependencies = appDependencies,
     path = file("play2x/")
   ).settings(
-    resolvers += Resolver.sonatypeRepo("snapshots")
+    resolvers += Resolver.sonatypeRepo("releases")
   )
 }

@@ -2,22 +2,22 @@ name := "scala-activerecord-scalatra-sample"
 
 organization := "com.github.aselab"
 
-version := "0.2-SNAPSHOT"
+version := "0.2.1"
 
 scalaVersion := "2.10.0"
 
 webSettings
 
 resolvers ++= Seq(
-  Resolver.sonatypeRepo("snapshots"),
+  Resolver.sonatypeRepo("releases"),
   Classpaths.typesafeReleases
 )
 
 classpathTypes ~= (_ + "orbit")
 
 libraryDependencies ++= Seq(
-  "com.github.aselab" %% "scala-activerecord" % "0.2-SNAPSHOT",
-  "com.github.aselab" %% "scala-activerecord-scalatra" % "0.2-SNAPSHOT",
+  "com.github.aselab" %% "scala-activerecord" % "0.2.1",
+  "com.github.aselab" %% "scala-activerecord-scalatra" % "0.2.1",
   "com.h2database" % "h2" % "1.3.170",
   "ch.qos.logback" % "logback-classic" % "1.0.9",
   "org.scalatra" %% "scalatra" % "2.2.0",
