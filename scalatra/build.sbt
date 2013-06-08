@@ -4,7 +4,7 @@ organization := "com.github.aselab"
 
 version := "0.2.2"
 
-scalaVersion := "2.10.1"
+scalaVersion := "2.10.2"
 
 webSettings
 

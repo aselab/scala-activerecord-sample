@@ -19,6 +19,7 @@ object ScalaActiveRecordSample extends Build {
     dependencies = appDependencies,
     path = file("play2x/")
   ).settings(
+    scalaVersion := "2.10.2",
     resolvers += Resolver.sonatypeRepo("releases"),
     templatesImport += "com.github.aselab.activerecord.views.dsl._"
   )
