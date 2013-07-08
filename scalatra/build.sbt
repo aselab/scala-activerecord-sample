@@ -18,8 +18,8 @@ classpathTypes ~= (_ + "orbit")
 libraryDependencies ++= Seq(
   "com.github.aselab" %% "scala-activerecord" % "0.2.2",
   "com.github.aselab" %% "scala-activerecord-scalatra" % "0.2.2",
-  "com.h2database" % "h2" % "1.3.170",
-  "ch.qos.logback" % "logback-classic" % "1.0.10",
+  "com.h2database" % "h2" % "1.3.172",
+  "ch.qos.logback" % "logback-classic" % "1.0.13",
   "org.scalatra" %% "scalatra" % "2.2.0",
   "org.scalatra" %% "scalatra-scalate" % "2.2.0",
   "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",

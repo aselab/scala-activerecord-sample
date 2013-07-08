@@ -11,7 +11,7 @@ object ScalaActiveRecordSample extends Build {
     "com.github.aselab" %% "scala-activerecord" % "0.2.2",
     "com.github.aselab" %% "scala-activerecord-play2" % "0.2.2",
     jdbc,
-    "com.h2database" % "h2" % "1.3.170"
+    "com.h2database" % "h2" % "1.3.172"
   )
 
   lazy val play2x = play.Project(
