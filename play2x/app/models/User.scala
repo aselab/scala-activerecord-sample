@@ -24,7 +24,7 @@ case class User(
   }
 }
 
-object User extends ActiveRecordCompanion[User] {
+object User extends ActiveRecordCompanion[User] with PlayFormSupport[User] {
   val md5 = java.security.MessageDigest.getInstance("MD5")
 
   def md5digest(str: String): String = {
@@ -35,3 +35,4 @@ object User extends ActiveRecordCompanion[User] {
     this.findBy("login" -> login, "hashedPassword" -> md5digest(password))
   }
 }
+

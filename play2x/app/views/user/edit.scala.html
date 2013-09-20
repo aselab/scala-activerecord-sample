@@ -1,9 +1,6 @@
 @(user: Form[models.User], action: Call, buttonLabel: String, title: String)(implicit lang: Lang)
 
-@import helper._
-@import views.helpers.ActiveRecordHelper._
-
-@implicitFieldConstructor = @{fieldConstructor(user)}
+@import models.User.helper._
 
 @main(title) {
   <ul class="breadcrumb">
@@ -18,7 +15,7 @@
   </ul>
   <h1>User</h1>
   <hr/>
-  @form(action, 'class -> "form-horizontal") {
+  @helper.form(action, 'class -> "form-horizontal") {
     <fieldset>
       @inputText(user("login"))
       @inputPassword(user("password"))
