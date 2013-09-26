@@ -35,7 +35,7 @@ abstract class CRUDController[T <: ActiveRecord](
 
   def create =  {
     val m = companion.bind(params)
-    if (m.errors.isEmpty && m.saveWithoutValidation) {
+    if (m.save) {
       if (!withoutShow) redirect(root + m.id)
       else redirect(root)
     } else {
@@ -79,7 +79,7 @@ abstract class CRUDController[T <: ActiveRecord](
   def update(id: Long) = companion.find(id) match {
     case Some(model) =>
       val m = companion.bind(params)(model)
-      if (m.errors.isEmpty && m.saveWithoutValidation) {
+      if (m.save) {
         if (!withoutShow) redirect(root + id)
         else redirect(root)
       } else {
