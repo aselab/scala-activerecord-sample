@@ -8,9 +8,16 @@ object Tables extends ActiveRecordTables {
 }
 
 case class Person(
-  @Required @Length(max = 128, on = "create") var name: String,
-  @Unique @Email @Length(max = 255) var email: String,
-  @Range(min = 0, max = 150, message = "must be within 0-150") var age: Int
+  @Required
+  @Length(max = 128, on = "create")
+  var name: String,
+
+  @Unique
+  @Email @Length(max = 255)
+  var email: String,
+
+  @Range(min = 0, max = 150, message = "must be within 0-150")
+  var age: Int
 ) extends ActiveRecord
 
 object Person extends ActiveRecordCompanion[Person]

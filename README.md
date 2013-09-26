@@ -23,7 +23,7 @@ The application starts on http://localhost:8080.
 ### Play! 2.x sample
 
 ```
-> run
+> play2x/run
 ```
 
 The application starts on http://localhost:9000.
