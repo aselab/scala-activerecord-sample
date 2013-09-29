@@ -50,10 +50,9 @@ object HasManyThroughSample extends App {
   val project1 = Project("project1").create
   val project2 = Project("project2").create
 
-  // TODO:
-  // val membership = user1.projects.assign(project1)
-  // membership.role := Role("aaa")
-  // membership.save
+  val membership = user1.projects.assign(project1)
+  membership.role := role1
+  membership.save
 
   Tables.cleanup
 }
