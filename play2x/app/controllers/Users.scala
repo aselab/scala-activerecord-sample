@@ -29,7 +29,7 @@ object Users extends Controller {
     User.form.bindFromRequest.fold(
       errors => BadRequest(view.edit(errors, routes.Users.create, "Create", "User create")), {
       user =>
-        transaction { user.saveWithoutValidation }
+        transaction { user.save }
         Redirect(routes.Users.show(user.id))
     })
   }
@@ -47,7 +47,7 @@ object Users extends Controller {
         User.form(user).bindFromRequest.fold(
           errors => BadRequest(view.edit(errors, routes.Users.update(id), "Update", "User edit")), {
           user =>
-            transaction { user.saveWithoutValidation }
+            transaction { user.save }
             Redirect(routes.Users.index)
         })
       case _ => NotFound
