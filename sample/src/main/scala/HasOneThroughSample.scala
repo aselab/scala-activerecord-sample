@@ -18,15 +18,14 @@ case class Supplier(name: String) extends ActiveRecord {
 
 case class Account(number: String) extends ActiveRecord {
   val supplierId: Option[Long] = None
+  val accountHistoryId: Option[Long] = None
 
   lazy val supplier = belongsTo[Supplier]
-  lazy val accountHistory = hasOne[AccountHistory]
+  lazy val accountHistory = belongsTo[AccountHistory]
 }
 
 case class AccountHistory(creditRating: Long) extends ActiveRecord {
-  val accountId: Option[Long] = None
-
-  lazy val account = belongsTo[Account]
+  lazy val account = hasOne[Account]
 }
 
 object Supplier extends ActiveRecordCompanion[Supplier]
@@ -40,9 +39,10 @@ object HasOneThroughSample extends App {
   val account = Account("account").create
   val accountHistory  = AccountHistory(1000).create
 
-  // supplier.account := account
-  // supplier.accountHistory := accountHistory
-  // println(account.accountHistory.headOption)
+  account.accountHistory := accountHistory
+  supplier.account := account
+
+  println(supplier.accountHistory.headOption) // => Some(AccountHistory(1000))
 
   Tables.cleanup
 }
