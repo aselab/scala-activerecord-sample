@@ -15,7 +15,7 @@ $ bin/sbt
 ### Scalatra sample
 
 ```
-> scalatra/container:start
+> scalatraRun
 ```
 
 The application starts on http://localhost:8080.
