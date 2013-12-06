@@ -1,4 +1,4 @@
-@(message: String)
+@(message: String)(implicit flash: Flash = Flash())
 
 @main("Index page") {
   <div class="jumbotron">
@@ -7,10 +7,17 @@
     </div>
   </div>
 
-  <h2>CRUD Sample</h2>
   <div class="col-md-4">
+    <h2>CRUD Sample</h2>
     <ul class="nav nav-pills nav-stacked">
       <li class="active"><a href="@routes.Users.index">User</a></li>
+    </ul>
+  </div>
+
+  <div class="col-md-4">
+    <h2>Simple Form Sample</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li class="active"><a href="@routes.Questions.newPage">Question</a></li>
     </ul>
   </div>
 }

@@ -1,0 +1,30 @@
+@(question: Form[models.Question])(implicit lang: Lang)
+
+@import models.Question.helper._
+
+@main("Question") {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Question</a></li>
+  </ul>
+
+  <div class="page-header">
+    <h1>Question</h1>
+    <p>
+      <a href="https://aselab.ci.cloudbees.com/job/scala-activerecord/javadoc/#com.github.aselab.activerecord.ActiveModel">ActiveModel</a> and 
+      <a href="https://github.com/aselab/scala-activerecord/tree/master/play2#playformsupportoptional">PlayFormSupport</a> example</p>
+  </div>
+  <div class="col-lg-8">
+    @helper.form(routes.Questions.create, 'class -> "form-horizontal") {
+      <fieldset>
+        @inputText(question("name"))
+        @inputText(question("email"))
+        @textarea(question("content"))
+      </fieldset>
+      <div class="well">
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <a href="@routes.Application.index" class="btn btn-default">Cancel</a>
+      </div>
+    }
+  </div>
+}

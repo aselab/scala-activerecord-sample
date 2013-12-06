@@ -1,6 +1,6 @@
 import play.Project._
 
-val _version = "0.2.3"
+val _version = "0.2.4-SNAPSHOT"
 
 name := "scala-activerecord-play2x-sample"
 
@@ -18,8 +18,8 @@ libraryDependencies ++= Seq(
   "com.github.aselab" %% "scala-activerecord" % _version,
   "com.github.aselab" %% "scala-activerecord-play2" % _version,
   jdbc,
-  "com.h2database" % "h2" % "1.3.172",
-  "org.webjars" %% "webjars-play" % "2.2.0",
+  "com.h2database" % "h2" % "1.3.174",
+  "org.webjars" %% "webjars-play" % "2.2.1",
   "org.webjars" % "bootstrap" % "3.0.0"
 )
 

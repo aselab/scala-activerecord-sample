@@ -16,3 +16,7 @@ activerecord.models.User.email = メールアドレス
 activerecord.models.User.password = パスワード
 activerecord.models.User.passwordConfirmation = パスワード(確認)
 
+activerecord.models.Question.name = 名前
+activerecord.models.Question.email = メールアドレス
+activerecord.models.Question.content = 内容
+

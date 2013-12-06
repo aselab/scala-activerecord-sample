@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit flash: Flash = Flash())
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,12 @@
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
     <script type="text/javascript">
       $(document).ready(function(){
-        $((location.href.indexOf("/user") != -1) ? "#menu_user" : "#menu_home").addClass("active");
+        $("#menu li").each(function() {
+          if (location.href.indexOf($(this).find("a").attr("href")) >= 0) {
+            $(this).addClass("active");
+            return false;
+          }
+        });
 
         $(".btn-danger").click(function(){
           var result = confirm("Are you sure?");
@@ -43,15 +48,18 @@
           <a class="navbar-brand" href="/">Play! 2.2 Sample</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav">
-            <li id="menu_home"><a href="/">Home</a></li>
-            <li id="menu_user"><a href="@routes.Users.index">User</a></li>
+          <ul class="nav navbar-nav" id="menu">
+            <li><a href="@routes.Users.index">User</a></li>
+            <li><a href="@routes.Questions.newPage">Question</a></li>
           </ul>
         </div>
       </div>
     </div>
 
     <div class="container">
+      @flash.get("success").map { message =>
+        <div class="alert alert-success">@message</div>
+      }
       @content
     </div><!-- /container -->
   </body>
