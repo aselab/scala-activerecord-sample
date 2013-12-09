@@ -1,12 +1,15 @@
 @(question: Form[models.Question])(implicit lang: Lang)
 
 @import models.Question.helper._
-@import views.html.helpers.datetimePicker
+@import views.html.helpers.{datetimePicker, datePicker}
 
 @main("Question") {
+  <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/datepicker.css"))'>
   <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-datetimepicker.min.css"))'>
   <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.min.js"))' charset="UTF-8"></script>
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datepicker.js"))' charset="UTF-8"></script>
   <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datetimepicker." + lang.language + ".js"))' charset="UTF-8"></script>
+  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datepicker." + lang.language + ".js"))' charset="UTF-8"></script>
   <ul class="breadcrumb">
     <li><a href="/">Home</a></li>
     <li class="active">Question</a></li>
@@ -25,6 +28,7 @@
         @inputText(question("email"))
         @textarea(question("content"))
         @datetimePicker(question("deadline"))
+        @datePicker(question("closeDate"))
       </fieldset>
       <div class="well">
         <button class="btn btn-primary" type="submit">Submit</button>

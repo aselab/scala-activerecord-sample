@@ -1,0 +1,27 @@
+@(field: Field, args: (Symbol,String)*)(implicit handler: views.html.helper.FieldConstructor, lang: play.api.i18n.Lang)
+
+@views.html.helper.input(field, args: _*) { (id, name, value, htmlArgs) =>
+  <div class="input-group input-append date" id="datepicker_@id">
+    <input class="form-control" size="16" type="text" value="" readonly>
+    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+    <span class="input-group-addon"><span class="add-on glyphicon glyphicon-calendar"></span></span>
+    <input type="hidden" id="@name" name="@name" value="@value" /><br/>
+  </div>
+  <script type="text/javascript">
+  $(function() {
+    var picker = $("#datepicker_@id").datepicker({
+      format: "yyyy-mm-dd",
+      autoclose: true,
+      todayBtn: true,
+      language: '@lang.language'
+    });
+    @value.collect { case v if v.nonEmpty =>
+      picker.datepicker("_setDate", new Date("@v"));
+    }
+    $(document).on("click", "#datepicker_@id .glyphicon-remove", function() {
+      picker.find("input").val("").change();
+    });
+  });
+  </script>
+}
+

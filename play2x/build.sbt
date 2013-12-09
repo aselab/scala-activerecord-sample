@@ -21,6 +21,7 @@ libraryDependencies ++= Seq(
   "com.h2database" % "h2" % "1.3.174",
   "org.webjars" %% "webjars-play" % "2.2.1",
   "org.webjars" % "bootstrap" % "3.0.3",
+  "org.webjars" % "bootstrap-datepicker" % "1.2.0",
   "org.webjars" % "bootstrap-datetimepicker" % "2.2.0"
 )
 
