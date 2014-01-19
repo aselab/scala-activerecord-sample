@@ -19,3 +19,5 @@ libraryDependencies ++= Seq(
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 discoveredMainClasses in Compile ~= {_.sorted}
+
+activerecordGeneratorSettings

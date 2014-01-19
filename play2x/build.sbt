@@ -26,3 +26,5 @@ libraryDependencies ++= Seq(
 )
 
 templatesImport += "com.github.aselab.activerecord.views.dsl._"
+
+activerecordPlaySettings

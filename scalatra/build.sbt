@@ -26,3 +26,5 @@ libraryDependencies ++= Seq(
 )
 
 addCommandAlias("scalatraRun", "~;scalatra/container:start; scalatra/container:reload /")
+
+activerecordScalatraSettings
