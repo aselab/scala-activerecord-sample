@@ -2,7 +2,7 @@ package com.github.aselab.activerecord.views.helpers
 
 import com.github.aselab.activerecord._
 
-trait Bootstrap3Support[T <: ActiveModel] { self: PlayFormSupport[T] with io.FormSupport[T] =>
+trait Bootstrap3Support[T <: ActiveModel] { self: ActiveModelCompanion[T] with PlayFormSupport[T] =>
   override lazy val helper = new PlayHelper(self) {
     import play.api.data._
     import play.api.templates.Html

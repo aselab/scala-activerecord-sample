@@ -50,9 +50,15 @@ object HasManyThroughSample extends App {
   val project1 = Project("project1").create
   val project2 = Project("project2").create
 
-  val membership = user1.projects.assign(project1)
-  membership.role := role1
-  membership.save
+  val membership1 = user1.projects.assign(project1)
+  membership1.role := role1
+  membership1.save
+
+  user1.projects << project2
+  project1.users << user2
+
+  println(user1.projects.toList) //=> List(Project(project1), Project(project2))
+  println(project2.users.exists(_.name === "user1")) //=> true
 
   Tables.cleanup
 }
