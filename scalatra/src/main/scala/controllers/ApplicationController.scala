@@ -6,5 +6,5 @@ import org.scalatra.scalate.ScalateSupport
 import com.github.aselab.activerecord.scalatra._
 
 trait ApplicationController extends ScalatraKernel with ScalateSupport
-  with DatabaseSupport with I18nSupport with CookieSupport
+  with I18nSupport with CookieSupport
 
