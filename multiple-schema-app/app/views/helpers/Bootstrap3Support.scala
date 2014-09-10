@@ -2,7 +2,7 @@ package com.github.aselab.activerecord.views.helpers
 
 import com.github.aselab.activerecord._
 
-trait Bootstrap3Support[T <: ActiveModel] { self: ActiveModelCompanion[T] with PlayFormSupport[T] =>
+trait Bootstrap3Support[T <: ActiveModel] { self: ActiveModelCompanion[T] with PlayFormSupport[T] with io.FormSupport[T] =>
   override lazy val helper = new PlayHelper(self) {
     import play.api.data._
     import play.twirl.api.Html
@@ -18,7 +18,7 @@ trait Bootstrap3Support[T <: ActiveModel] { self: ActiveModelCompanion[T] with P
         Html(<div class={s"control-group ${elements.args.get('_class).getOrElse("")} ${error}"}
           id={elements.args.get('_id).map(_.toString).getOrElse(elements.id + "_field")}>
           <div class="form-group">
-            <label class="control-label col-lg-3" for={elements.id}>{Config.translator.field(m.erasure, elements.field.name)(elements.lang.toLocale)}</label>
+            <label class="control-label col-lg-3" for={elements.id}>{Config.translator.field(m.runtimeClass, elements.field.name)(elements.lang.toLocale)}</label>
             <div class="col-lg-5">
               {xml.Unparsed(elements.input.body)}
             </div>

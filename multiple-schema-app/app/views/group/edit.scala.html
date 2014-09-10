@@ -1,0 +1,28 @@
+@(group: Form[models.schema2.Group], action: Call, buttonLabel: String, title: String)(implicit lang: Lang)
+
+@import models.schema2.Group.helper._
+
+@main(title) {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Groups.index">Group</a></li>
+    <li class="active">
+      @(if (action == routes.Groups.create) "New Group" else group.value.map(_.name).getOrElse(group.data("name")))
+    </li>
+  </ul>
+
+  <div class="page-header">
+    <h1>Group</h1>
+  </div>
+  <div class="col-lg-8">
+    @helper.form(action, 'class -> "form-horizontal") {
+      <fieldset>
+        @inputText(group("name"))
+      </fieldset>
+      <div class="well">
+        <button class="btn btn-primary" type="submit">@buttonLabel</button>
+        <a href="@routes.Groups.index" class="btn btn-default">Cancel</a>
+      </div>
+    }
+  </div>
+}

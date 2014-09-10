@@ -1,0 +1,25 @@
+@(group: models.schema2.Group)
+
+@main("Group info") {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Groups.index">Group</a></li>
+    <li class="active">@group.name</li>
+  </ul>
+
+  <div class="page-header">
+    <h1>Group</h1>
+  </div>
+  <div class="col-lg-8">
+    <dl class="dl-horizontal">
+      <dt>@Messages("activerecord.models.Group.name")</dt>
+      <dd>@group.name</dd>
+    </dl>
+
+    <div class="well">
+      <a href="@routes.Groups.index" class="btn btn-default">Back</a>
+      <a href="@routes.Groups.edit(group.id)" class="btn btn-default">Edit</a>
+      <a href="#" data-redirect="@routes.Groups.index" data-target="@routes.Groups.delete(group.id)" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+}

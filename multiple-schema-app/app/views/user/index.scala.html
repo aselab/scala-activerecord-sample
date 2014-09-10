@@ -1,0 +1,50 @@
+@(users: List[models.schema1.User])
+
+@main("User list") {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">User</li>
+  </ul>
+
+  <div class="page-header">
+    <h1>User</h1>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>@Messages("activerecord.models.User.login")</th>
+        <th>@Messages("activerecord.models.User.name")</th>
+        <th>@Messages("activerecord.models.User.email")</th>
+        <th>@Messages("activerecord.models.User.group")</th>
+        <th>@Messages("Actions")</th>
+      </tr>
+    </thead>
+    <tbody>
+      @users.map { u =>
+        <tr>
+          <td><a href="@routes.Users.show(u.id)">@u.login</a></td>
+          <td>@u.name</td>
+          <td>@u.email</td>
+          <td>@u.group.map(_.name)</td>
+          <td>
+            <a href="@routes.Users.edit(u.id)" class="btn btn-default btn-sm">Edit</a>
+            <a href="#" data-redirect="@routes.Users.index" data-target="@routes.Users.delete(u.id)" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      }
+      @if(users.isEmpty) {
+        <tr>
+          <td colspan="4">
+            <div class="alert alert-info">
+              <strong>Data is nothing.</strong>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="form-actions">
+    <a href="@routes.Users.newPage" class="btn btn-primary">Create</a>
+  </div>
+}

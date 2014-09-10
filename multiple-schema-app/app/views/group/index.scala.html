@@ -1,0 +1,44 @@
+@(groups: List[models.schema2.Group])
+
+@main("Group list") {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Group</li>
+  </ul>
+
+  <div class="page-header">
+    <h1>Group</h1>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>@Messages("activerecord.models.Group.name")</th>
+        <th>@Messages("Actions")</th>
+      </tr>
+    </thead>
+    <tbody>
+      @groups.map { g =>
+        <tr>
+          <td><a href="@routes.Groups.show(g.id)">@g.name</a></td>
+          <td>
+            <a href="@routes.Groups.edit(g.id)" class="btn btn-default btn-sm">Edit</a>
+            <a href="#" data-redirect="@routes.Groups.index" data-target="@routes.Groups.delete(g.id)" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      }
+      @if(groups.isEmpty) {
+        <tr>
+          <td colspan="4">
+            <div class="alert alert-info">
+              <strong>Data is nothing.</strong>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="form-actions">
+    <a href="@routes.Groups.newPage" class="btn btn-primary">Create</a>
+  </div>
+}

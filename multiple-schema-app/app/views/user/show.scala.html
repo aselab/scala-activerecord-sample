@@ -1,0 +1,35 @@
+@(user: models.schema1.User)
+
+@main("User info") {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Users.index">User</a></li>
+    <li class="active">@user.login</li>
+  </ul>
+
+  <div class="page-header">
+    <h1>User</h1>
+  </div>
+  <div class="col-lg-8">
+    <dl class="dl-horizontal">
+      <dt>@Messages("activerecord.models.User.login")</dt>
+      <dd>@user.login</dd>
+      <dt>@Messages("activerecord.models.User.name")</dt>
+      <dd>@user.name</dd>
+      <dt>@Messages("activerecord.models.User.email")</dt>
+      <dd>@user.email</dd>
+      <dt>@Messages("activerecord.models.User.group")</dt>
+      <dd>@user.group.map(_.name)</dd>
+      <dt>@Messages("activerecord.models.User.createdOn")</dt>
+      <dd>@user.createdOn</dd>
+      <dt>@Messages("activerecord.models.User.updatedOn")</dt>
+      <dd>@user.updatedOn</dd>
+    </dl>
+
+    <div class="well">
+      <a href="@routes.Users.index" class="btn btn-default">Back</a>
+      <a href="@routes.Users.edit(user.id)" class="btn btn-default">Edit</a>
+      <a href="#" data-redirect="@routes.Users.index" data-target="@routes.Users.delete(user.id)" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+}

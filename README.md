@@ -27,3 +27,12 @@ The application starts on http://localhost:8080.
 ```
 
 The application starts on http://localhost:9000.
+
+### Play! 2.x sample (multiple-schema)
+
+```
+> project multipleSchemaSample
+> run
+```
+
+The application starts on http://localhost:9000.

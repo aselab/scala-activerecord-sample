@@ -1,0 +1,27 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+GET     /users                       controllers.Users.index
+GET     /users/new                   controllers.Users.newPage
+GET     /users/:id                   controllers.Users.show(id: Long)
+POST    /users                       controllers.Users.create
+GET     /users/:id/edit              controllers.Users.edit(id: Long)
+POST    /users/:id                   controllers.Users.update(id: Long)
+DELETE  /users/:id                   controllers.Users.delete(id: Long)
+
+GET     /groups                       controllers.Groups.index
+GET     /groups/new                   controllers.Groups.newPage
+GET     /groups/:id                   controllers.Groups.show(id: Long)
+POST    /groups                       controllers.Groups.create
+GET     /groups/:id/edit              controllers.Groups.edit(id: Long)
+POST    /groups/:id                   controllers.Groups.update(id: Long)
+DELETE  /groups/:id                   controllers.Groups.delete(id: Long)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+# Enable webjar based resources to be returned
+GET     /webjars/*file              controllers.WebJarAssets.at(file)

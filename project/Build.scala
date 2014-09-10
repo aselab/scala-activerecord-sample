@@ -11,5 +11,9 @@ object ScalaActiveRecordSample extends Build {
     TwirlKeys.templateImports += "com.github.aselab.activerecord.views.dsl._"
   )
 
+  lazy val multipleSchemaSample = (project in file("multiple-schema-app")).enablePlugins(play.PlayScala).settings(
+    TwirlKeys.templateImports += "com.github.aselab.activerecord.views.dsl._"
+  )
+
   override def rootProject = Some(play2x)
 }

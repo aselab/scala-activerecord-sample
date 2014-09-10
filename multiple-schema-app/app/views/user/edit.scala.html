@@ -1,0 +1,33 @@
+@(user: Form[models.schema1.User], action: Call, buttonLabel: String, title: String)(implicit lang: Lang)
+
+@import models.schema1.User.helper._
+
+@main(title) {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Users.index">User</a></li>
+    <li class="active">
+      @(if (action == routes.Users.create) "New user" else user.value.map(_.login).getOrElse(user.data("login")))
+    </li>
+  </ul>
+
+  <div class="page-header">
+    <h1>User</h1>
+  </div>
+  <div class="col-lg-8">
+    @helper.form(action, 'class -> "form-horizontal") {
+      <fieldset>
+        @inputText(user("login"))
+        @inputPassword(user("password"))
+        @inputPassword(user("passwordConfirmation"))
+        @inputText(user("name"))
+        @inputText(user("email"))
+        @select(user("groupId"), models.schema2.Group.selectField)
+      </fieldset>
+      <div class="well">
+        <button class="btn btn-primary" type="submit">@buttonLabel</button>
+        <a href="@routes.Users.index" class="btn btn-default">Cancel</a>
+      </div>
+    }
+  </div>
+}
