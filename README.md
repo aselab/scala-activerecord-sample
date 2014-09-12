@@ -1,3 +1,7 @@
+## Sample Heroku URL (Play! 2.x sample)
+
+http://play2-scala-activerecord.herokuapp.com/
+
 ## Scala ActiveRecord sample
 
 run sbt.
