@@ -8,8 +8,10 @@
   <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-datetimepicker.min.css"))'>
   <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.min.js"))' charset="UTF-8"></script>
   <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datepicker.js"))' charset="UTF-8"></script>
-  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datetimepicker." + lang.language + ".js"))' charset="UTF-8"></script>
-  <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datepicker." + lang.language + ".js"))' charset="UTF-8"></script>
+  @if(lang.language != "en") {
+    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datetimepicker." + lang.language + ".js"))' charset="UTF-8"></script>
+    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datepicker." + lang.language + ".js"))' charset="UTF-8"></script>
+  }
   <ul class="breadcrumb">
     <li><a href="/">Home</a></li>
     <li class="active">Question</a></li>
