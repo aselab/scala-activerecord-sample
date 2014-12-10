@@ -6,13 +6,13 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.11.2"
+scalaVersion := "2.11.4"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq(
   "com.github.aselab" %% "scala-activerecord" % _version,
-  "com.h2database" % "h2" % "1.4.180",
+  "com.h2database" % "h2" % "1.4.182",
   "org.slf4j" % "slf4j-nop" % "1.7.7"
 )
 

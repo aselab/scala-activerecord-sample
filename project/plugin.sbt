@@ -3,9 +3,9 @@ resolvers ++= Seq(
   Resolver.sonatypeRepo("snapshots")
 )
 
-addSbtPlugin("com.earldouglas" % "xsbt-web-plugin" % "1.0.0-M6")
+addSbtPlugin("com.earldouglas" % "xsbt-web-plugin" % "1.0.0")
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.4")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.3.7")
 
 addSbtPlugin("com.github.aselab" % "scala-activerecord-play2-sbt" % "0.3.0")
 
