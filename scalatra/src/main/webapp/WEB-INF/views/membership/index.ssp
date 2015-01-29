@@ -1,11 +1,9 @@
 <%@ val projects: List[models.Project] %>
 <%@ val users: List[models.User] %>
 <%@ val roles: List[models.Role] %>
-<%@ val memberships: List[models.Membership] %>
 
 <%
-  import net.liftweb.json._
-  implicit val formats = DefaultFormats
+  import com.github.aselab.activerecord.dsl._
 %>
 
 <ul class="breadcrumb">
@@ -58,16 +56,12 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    var memberships = $.parseJSON('<%= unescape(compact(render(
-      Extraction.decompose(memberships.groupBy(m => m.projectId).map {
-        case (projectId, list) => (projectId.toString, list)
-      })
-    ))) %>');
+    var memberships = $.parseJSON('<%= unescape(models.Membership.groupBy(_.projectId).toJson) %>');
     var currentProject;
 
     function commitProject(project) {
       var data = memberships[project] = [];
-      
+
       $("tbody input:checked").each(function() {
         var checkbox = $(this);
         var d = {userId: parseInt(checkbox.val())};

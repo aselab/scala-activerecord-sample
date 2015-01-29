@@ -12,7 +12,7 @@ trait Bootstrap3Support[T <: ActiveModel] { self: ActiveModelCompanion[T] with P
       super.inputOptions(field, options :+ ('class -> "form-control"))
     }
 
-    override implicit def fieldConstructor(implicit m: Manifest[T]) = new FieldConstructor {
+    override implicit def fieldConstructor(implicit m: reflect.ClassTag[T]) = new FieldConstructor {
       def apply(elements: FieldElements) = {
         val error = if (elements.hasErrors) "has-error" else ""
         Html(<div class={s"control-group ${elements.args.get('_class).getOrElse("")} ${error}"}
