@@ -1,0 +1,25 @@
+<%@ val group: models.schema2.Group %>
+<ul class="breadcrumb">
+ <li>
+   <a href="/">Home</a><span class="divider">/</span>
+ </li>
+ <li>
+   <a href="/group">Group</a><span class="divider">/</span>
+ </li>
+ <li class="active">${group.name}</li>
+</ul>
+
+<h1>Group</h1>
+<hr/>
+<div class="span8">
+  <p>
+    <b>Name</b><br/>
+    <pre>${group.name}</pre>
+  </p>
+
+  <div class="form-actions">
+    <a href="/group" class="btn">Back</a>
+    <a href="/group/${group.id}/edit" class="btn">Edit</a>
+    <a href="#" data-redirect="/group" data-target="/group/${group.id}" class="btn btn-danger">Delete</a>
+  </div>
+</div>

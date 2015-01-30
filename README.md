@@ -24,6 +24,14 @@ $ bin/sbt
 
 The application starts on http://localhost:8080.
 
+### Scalatra sample (multiple-schema)
+
+```
+> scalatraMultipleSchemaRun
+```
+
+The application starts on http://localhost:8080.
+
 ### Play! 2.x sample
 
 ```
@@ -35,7 +43,7 @@ The application starts on http://localhost:9000.
 ### Play! 2.x sample (multiple-schema)
 
 ```
-> project multipleSchemaSample
+> project play2xMultipleSchemaSample
 > run
 ```
 

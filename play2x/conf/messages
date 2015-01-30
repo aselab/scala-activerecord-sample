@@ -9,3 +9,14 @@ activerecord.errors.enum = must be one of {0}
 activerecord.errors.format = doesn''t match format
 activerecord.errors.confirmation = doesn''t match
 activerecord.errors.accepted = must be accepted
+
+activerecord.models.User.name = Name
+activerecord.models.User.login = Login
+activerecord.models.User.email = Email
+activerecord.models.User.password = Password
+activerecord.models.User.passwordConfirmation = Password confirmation
+
+activerecord.models.Question.name = Name
+activerecord.models.Question.email = Email
+activerecord.models.Question.content = Content
+

@@ -1,0 +1,47 @@
+<%@ val users: List[models.schema1.User] %>
+<ul class="breadcrumb">
+ <li>
+   <a href="/">Home</a>
+   <span class="divider">/</span>
+ </li>
+ <li class="active">User</li>
+</ul>
+
+<h1>Users</h1>
+<hr/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Login</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    #for (u <- users)
+      <tr>
+        <td><a href="/user/${u.id}">${u.login}</a></td>
+        <td>${u.name}</td>
+        <td>${u.email}</td>
+        <td>
+          <a href="/user/${u.id}/edit" class="btn btn-mini">Edit</a>
+          <a href="#" data-redirect="/user" data-target="/user/${u.id}" class="btn btn-mini btn-danger">Destroy</a>
+        </td>
+      </tr>
+    #end
+    #if (users.isEmpty)
+      <tr>
+        <td colspan="4">
+          <div class="alert alert-info">
+            <h3>Data is nothing.</h3>
+          </div>
+        </td>
+      </tr>
+    #end
+  </tbody>
+</table>
+
+<div class="form-actions">
+  <a href="/user/new" class="btn btn-primary">Create</a>
+</div>

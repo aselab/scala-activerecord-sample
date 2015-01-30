@@ -19,7 +19,7 @@ trait InitialData extends ActiveRecordTables {
     super.initialize
 
     // Create sample data
-    if (Project.all.count == 0) {
+    if (Project.count == 0) {
       (1 to 3).foreach(i => Project("project" + i).save)
       Seq("administrators", "developers", "users").foreach(s => Role(s).save)
     }

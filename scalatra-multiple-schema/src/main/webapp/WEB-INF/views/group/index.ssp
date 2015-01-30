@@ -1,0 +1,43 @@
+<%@ val groups: List[models.schema2.Group] %>
+<ul class="breadcrumb">
+ <li>
+   <a href="/">Home</a>
+   <span class="divider">/</span>
+ </li>
+ <li class="active">Group</li>
+</ul>
+
+<h1>Groups</h1>
+<hr/>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    #for (r <- groups)
+      <tr>
+        <td><a href="/group/${r.id}">${r.name}</a></td>
+        <td>
+          <a href="/group/${r.id}/edit" class="btn btn-mini">Edit</a>
+          <a href="#" data-redirect="/group" data-target="/group/${r.id}" class="btn btn-mini btn-danger">Destroy</a>
+        </td>
+      </tr>
+    #end
+    #if (groups.isEmpty)
+      <tr>
+        <td colspan="4">
+          <div class="alert alert-info">
+            <h3>Data is nothing.</h3>
+          </div>
+        </td>
+      </tr>
+    #end
+  </tbody>
+</table>
+
+<div class="form-actions">
+  <a href="/group/new" class="btn btn-primary">Create</a>
+</div>

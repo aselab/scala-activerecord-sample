@@ -7,11 +7,13 @@ object ScalaActiveRecordSample extends Build {
 
   lazy val scalatra = project
 
+  lazy val scalatraMultipleSchemaSample = project in file("scalatra-multiple-schema")
+
   lazy val play2x = (project in file("play2x")).enablePlugins(play.PlayScala).settings(
     TwirlKeys.templateImports += "com.github.aselab.activerecord.views.dsl._"
   )
 
-  lazy val multipleSchemaSample = (project in file("multiple-schema-app")).enablePlugins(play.PlayScala).settings(
+  lazy val play2xMultipleSchemaSample = (project in file("play2x-multiple-schema")).enablePlugins(play.PlayScala).settings(
     TwirlKeys.templateImports += "com.github.aselab.activerecord.views.dsl._"
   )
 
