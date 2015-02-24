@@ -58,7 +58,13 @@
 
     <div class="container">
       @flash.get("success").map { message =>
-        <div class="alert alert-success">@message</div>
+      <div class="alert alert-success">@message
+        <div>
+          <pre>
+          @flash.get("message")
+          </pre>
+        </div>
+      </div>
       }
       @content
     </div><!-- /container -->

@@ -17,7 +17,8 @@ object Questions extends Controller {
       errors => BadRequest(view.edit(errors)), {
       question =>
         Redirect(routes.Application.index).flashing(
-          "success" -> "The question has been created"
+          "success" -> "The question has been created",
+          "message" -> question.message
         )
     })
   }
