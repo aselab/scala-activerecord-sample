@@ -1,0 +1,30 @@
+@(ad: Form[models.Ad], magazineId: Long, action: Call, buttonLabel: String, title: String)(implicit lang: Lang)
+
+@import models.Ad.helper._
+
+@main(title) {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Magazines.show(magazineId)">Magazine</a></li>
+    <li><a href="@routes.Ads.index(magazineId)">Ad</a></li>
+    <li class="active">
+      @(if (action == routes.Ads.create(magazineId)) "New ad" else ad.value.map(_.name).getOrElse(ad.data("name")))
+    </li>
+  </ul>
+
+  <div class="page-header">
+    <h1>Ad</h1>
+  </div>
+  <div class="col-lg-8">
+    @helper.form(action, 'class -> "form-horizontal") {
+      <fieldset>
+        @inputText(ad("name"))
+        @inputText(ad("price"))
+      </fieldset>
+      <div class="well">
+        <button class="btn btn-primary" type="submit">@buttonLabel</button>
+        <a href="@routes.Ads.index(magazineId)" class="btn btn-default">Cancel</a>
+      </div>
+    }
+  </div>
+}

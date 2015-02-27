@@ -1,0 +1,36 @@
+@(magazine: models.Magazine)(implicit lang: Lang)
+
+@main("Magazine info") {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Magazines.index">Magazine</a></li>
+    <li class="active">@magazine.name</li>
+  </ul>
+
+  <div class="page-header">
+    <h1>Magazine</h1>
+  </div>
+  <div class="col-lg-8">
+    <dl class="dl-horizontal">
+      <dt>@Messages("activerecord.models.Magazine.name")</dt>
+      <dd>@magazine.name</dd>
+      <dt>
+        @Messages("activerecord.models.Magazine.ads")
+        <a href="@routes.Ads.newPage(magazine.id)" class="btn btn-xs btn-success">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </dt>
+      <dd>
+        @magazine.ads.map { ad => 
+          @ad.name (@ad.price)<br/>
+        }
+      </dd>
+    </dl>
+
+    <div class="well">
+      <a href="@routes.Magazines.index" class="btn btn-default">Back</a>
+      <a href="@routes.Magazines.edit(magazine.id)" class="btn btn-default">Edit</a>
+      <a href="#" data-redirect="@routes.Magazines.index" data-target="@routes.Magazines.delete(magazine.id)" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
+}

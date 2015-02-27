@@ -16,6 +16,12 @@ activerecord.models.User.email = メールアドレス
 activerecord.models.User.password = パスワード
 activerecord.models.User.passwordConfirmation = パスワード(確認)
 
+activerecord.models.Magazine.name = タイトル
+activerecord.models.Magazine.ads = 広告
+
+activerecord.models.Ad.name = 商品名
+activerecord.models.Ad.price = 値段
+
 activerecord.models.Question.name = 名前
 activerecord.models.Question.email = メールアドレス
 activerecord.models.Question.content = 内容

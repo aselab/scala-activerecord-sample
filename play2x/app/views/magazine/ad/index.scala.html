@@ -1,0 +1,46 @@
+@(ads: List[models.Ad], magazineId: Long)(implicit lang: Lang)
+
+@main("Ad list") {
+  <ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="@routes.Magazines.show(magazineId)">Magazine</a></li>
+    <li class="active">Ad</li>
+  </ul>
+
+  <div class="page-header">
+    <h1>Ad</h1>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>@Messages("activerecord.models.Ad.name")</th>
+        <th>@Messages("Actions")</th>
+      </tr>
+    </thead>
+    <tbody>
+      @ads.map { a =>
+        <tr>
+          <td><a href="@routes.Ads.show(magazineId, a.id)">@a.name</a></td>
+          <td>@a.price</td>
+          <td>
+            <a href="@routes.Ads.edit(a.id, magazineId)" class="btn btn-default btn-sm">Edit</a>
+            <a href="#" data-redirect="@routes.Ads.index(magazineId)" data-target="@routes.Ads.delete(a.id, magazineId)" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+      }
+      @if(ads.isEmpty) {
+        <tr>
+          <td colspan="3">
+            <div class="alert alert-info">
+              <strong>Data is nothing.</strong>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="form-actions">
+    <a href="@routes.Ads.newPage(magazineId)" class="btn btn-primary">Create</a>
+  </div>
+}

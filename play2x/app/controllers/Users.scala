@@ -1,11 +1,9 @@
 package controllers
 
 import play.api.mvc._
-import play.api.data._
-import play.api.data.Forms._
+import views.html.{user => view}
 
 import models._
-import views.html.{user => view}
 import com.github.aselab.activerecord.dsl._
 
 object Users extends Controller {
