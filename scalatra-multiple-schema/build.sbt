@@ -1,4 +1,4 @@
-lazy val _version = "0.3.1-SNAPSHOT"
+lazy val _version = "0.3.1"
 
 name := "scalatra-multiple-schema-sample"
 
@@ -6,7 +6,7 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.6"
 
 jetty()
 

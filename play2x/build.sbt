@@ -1,4 +1,4 @@
-val _version = "0.3.1-SNAPSHOT"
+val _version = "0.3.1"
 
 name := "scala-activerecord-play2x-sample"
 
@@ -6,7 +6,7 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.6"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
