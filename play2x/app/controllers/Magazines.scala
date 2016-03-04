@@ -1,12 +1,15 @@
 package controllers
 
+import javax.inject.Inject
+
 import play.api.mvc._
+import play.api.i18n.{MessagesApi, I18nSupport}
 import views.html.{magazine => view}
 
 import models._
 import com.github.aselab.activerecord.dsl._
 
-object Magazines extends Controller {
+class Magazines @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
   def index = Action {
     Ok(view.index(Magazine.all.toList))

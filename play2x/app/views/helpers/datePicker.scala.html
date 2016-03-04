@@ -1,4 +1,4 @@
-@(field: Field, args: (Symbol,String)*)(implicit handler: views.html.helper.FieldConstructor, lang: play.api.i18n.Lang)
+@(field: Field, args: (Symbol,String)*)(implicit handler: views.html.helper.FieldConstructor, messages: Messages, lang: play.api.i18n.Lang)
 
 @views.html.helper.input(field, args: _*) { (id, name, value, htmlArgs) =>
   <div class="input-group input-append date" id="datepicker_@id">

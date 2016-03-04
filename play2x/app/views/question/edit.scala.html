@@ -1,16 +1,16 @@
-@(question: Form[models.Question])(implicit lang: Lang)
+@(question: Form[models.Question])(implicit messages: Messages)
 
 @import models.Question.helper._
 @import views.html.helpers.{datetimePicker, datePicker}
 
 @main("Question") {
-  <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/datepicker.css"))'>
+  <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-datepicker.min.css"))'>
   <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap-datetimepicker.min.css"))'>
   <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datetimepicker.min.js"))' charset="UTF-8"></script>
   <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap-datepicker.js"))' charset="UTF-8"></script>
-  @if(lang.language != "en") {
-    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datetimepicker." + lang.language + ".js"))' charset="UTF-8"></script>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datepicker." + lang.language + ".js"))' charset="UTF-8"></script>
+  @if(messages.lang.language != "en") {
+    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datetimepicker." + messages.lang.language + ".js"))' charset="UTF-8"></script>
+    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("locales/bootstrap-datepicker." + messages.lang.language + ".min.js"))' charset="UTF-8"></script>
   }
   <ul class="breadcrumb">
     <li><a href="/">Home</a></li>

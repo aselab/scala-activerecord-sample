@@ -1,4 +1,4 @@
-val _version = "0.3.1"
+val _version = "0.3.2-SNAPSHOT"
 
 name := "scala-activerecord-play2x-sample"
 
@@ -6,7 +6,7 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
@@ -15,11 +15,13 @@ libraryDependencies ++= Seq(
   "com.github.aselab" %% "scala-activerecord-play2" % _version,
   "com.github.aselab" %% "scala-activerecord-play2-specs" % _version % "test",
   jdbc,
-  "com.h2database" % "h2" % "1.4.185",
-  "org.webjars" %% "webjars-play" % "2.3.0-2",
-  "org.webjars" % "bootstrap" % "3.3.2-1",
-  "org.webjars" % "bootstrap-datepicker" % "1.3.1",
-  "org.webjars" % "bootstrap-datetimepicker" % "2.3.1"
+  "com.h2database" % "h2" % "1.4.191",
+  "org.webjars" %% "webjars-play" % "2.4.0-2",
+  "org.webjars" % "bootstrap" % "3.3.6",
+  "org.webjars" % "bootstrap-datepicker" % "1.5.0-1",
+  "org.webjars" % "bootstrap-datetimepicker" % "2.3.5"
 )
 
 activerecordPlaySettings
+
+routesGenerator := InjectedRoutesGenerator

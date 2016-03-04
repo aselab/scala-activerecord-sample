@@ -1,13 +1,16 @@
 package controllers
 
+import javax.inject.Inject
+
 import play.api.mvc._
+import play.api.i18n.{MessagesApi, I18nSupport}
 import views.html.magazine.{ad => view}
 import scala.concurrent.Future
 
 import models._
 import com.github.aselab.activerecord.dsl._
 
-object Ads extends Controller {
+class Ads @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
   def withMagazine(magazineId: Long)(block: (Magazine, Request[AnyContent]) => Result) =
     Action { request =>
