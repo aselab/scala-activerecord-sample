@@ -1,4 +1,4 @@
-lazy val _version = "0.3.1"
+lazy val _version = "0.3.2"
 
 name := "scala-activerecord-scalatra-sample"
 
@@ -6,26 +6,26 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.8"
 
-jetty()
+enablePlugins(JettyPlugin)
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq(
   "com.github.aselab" %% "scala-activerecord" % _version,
   "com.github.aselab" %% "scala-activerecord-scalatra" % _version,
-  "com.h2database" % "h2" % "1.4.185",
-  "ch.qos.logback" % "logback-classic" % "1.1.2",
-  "org.scalatra" %% "scalatra" % "2.3.0",
-  "org.scalatra" %% "scalatra-scalate" % "2.3.0",
+  "com.h2database" % "h2" % "1.4.192",
+  "ch.qos.logback" % "logback-classic" % "1.1.7",
+  "org.scalatra" %% "scalatra" % "2.4.0",
+  "org.scalatra" %% "scalatra-scalate" % "2.4.0",
   "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
-  "org.eclipse.jetty" % "jetty-webapp" % "9.3.0.M1" % "container",
-  "org.eclipse.jetty" % "jetty-plus" % "9.3.0.M1" % "container"
+  "org.eclipse.jetty" % "jetty-webapp" % "9.4.0.M0" % "container",
+  "org.eclipse.jetty" % "jetty-plus" % "9.4.0.M0" % "container"
 )
 
-addCommandAlias("scalatraRun", "scalatra/container:start")
+addCommandAlias("scalatraRun", "scalatra/jetty:start")
 
-javaOptions in container += "-Xmx2g"
+javaOptions in Jetty += "-Xmx2g"
 
 activerecordScalatraSettings
