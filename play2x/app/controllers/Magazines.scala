@@ -9,7 +9,7 @@ import views.html.{magazine => view}
 import models._
 import com.github.aselab.activerecord.dsl._
 
-class Magazines @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
+class Magazines @Inject()(implicit webJarAssets: WebJarAssets, val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
   def index = Action {
     Ok(view.index(Magazine.all.toList))

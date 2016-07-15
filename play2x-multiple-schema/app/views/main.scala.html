@@ -1,4 +1,4 @@
-@(title: String)(content: Html)(implicit flash: Flash = Flash())
+@(title: String)(content: Html)(implicit flash: Flash = Flash(), webJarAssets: WebJarAssets)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +7,8 @@
     <title>@title</title>
 
     <!-- Le styles -->
-    <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))'>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
+    <link rel='stylesheet' href='@routes.WebJarAssets.at(webJarAssets.locate("css/bootstrap.min.css"))'>
+    <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("jquery.min.js"))'></script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -45,7 +45,7 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Play! 2.3 Sample (multiple-schema)</a>
+          <a class="navbar-brand" href="/">Play! 2.5 Sample (multiple-schema)</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav" id="menu">

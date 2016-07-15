@@ -32,7 +32,7 @@ The application starts on http://localhost:8080.
 
 The application starts on http://localhost:8080.
 
-### Play! 2.x sample
+### Play! 2.5 sample
 
 ```
 > play2x/run
@@ -40,7 +40,7 @@ The application starts on http://localhost:8080.
 
 The application starts on http://localhost:9000.
 
-### Play! 2.x sample (multiple-schema)
+### Play! 2.5 sample (multiple-schema)
 
 ```
 > project play2xMultipleSchemaSample

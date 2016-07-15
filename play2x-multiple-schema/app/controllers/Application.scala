@@ -1,8 +1,14 @@
 package controllers
 
-import play.api.mvc._
+import javax.inject.Inject
 
-object Application extends Controller {
+import play.api.mvc._
+import play.api.i18n.{MessagesApi, I18nSupport}
+
+class Application @Inject()(
+  implicit webJarAssets: WebJarAssets,
+  val messagesApi: MessagesApi
+) extends Controller with I18nSupport {
 
   def index = Action { implicit request =>
     Ok(views.html.index("Hello, Scala ActiveRecord"))

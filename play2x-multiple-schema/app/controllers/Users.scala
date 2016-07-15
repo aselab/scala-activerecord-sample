@@ -1,6 +1,9 @@
 package controllers
 
+import javax.inject.Inject
+
 import play.api.mvc._
+import play.api.i18n.{MessagesApi, I18nSupport}
 import play.api.data._
 import play.api.data.Forms._
 
@@ -8,7 +11,10 @@ import models.schema1._
 import views.html.{user => view}
 import com.github.aselab.activerecord.dsl._
 
-object Users extends Controller {
+class Users @Inject()(
+  implicit webJarAssets: WebJarAssets,
+  val messagesApi: MessagesApi
+) extends Controller with I18nSupport {
 
   def index = Action {
     Ok(view.index(User.all.toList))

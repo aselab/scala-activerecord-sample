@@ -7,7 +7,10 @@ import play.api.test.Helpers._
 class UsersSpec extends Specification {
   "Users" should {
     "index /user" >> new WithApplication {
-      val result = controllers.Users.index(FakeRequest())
+      implicit val webJarAssets = app.injector.instanceOf[WebJarAssets]
+      implicit val messagesApi = app.injector.instanceOf[play.api.i18n.MessagesApi]
+      val controller = new controllers.Users()
+      val result = controller.index(FakeRequest())
       status(result) must equalTo(OK)
       contentType(result) must beSome("text/html")
       charset(result) must beSome("utf-8")

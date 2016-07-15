@@ -10,7 +10,7 @@ import scala.concurrent.Future
 import models._
 import com.github.aselab.activerecord.dsl._
 
-class Ads @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
+class Ads @Inject()(implicit webJarAssets: WebJarAssets, val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
   def withMagazine(magazineId: Long)(block: (Magazine, Request[AnyContent]) => Result) =
     Action { request =>

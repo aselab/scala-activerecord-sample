@@ -10,7 +10,7 @@ import play.api.i18n.{MessagesApi, I18nSupport}
 import models._
 import views.html.{question => view}
 
-class Questions @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
+class Questions @Inject()(implicit webJarAssets: WebJarAssets, val messagesApi: MessagesApi) extends Controller with I18nSupport {
   def newPage = Action { implicit request =>
     Ok(view.edit(Question.form))
   }

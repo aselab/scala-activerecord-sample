@@ -1,6 +1,9 @@
 package controllers
 
+import javax.inject.Inject
+
 import play.api.mvc._
+import play.api.i18n.{MessagesApi, I18nSupport}
 import play.api.data._
 import play.api.data.Forms._
 
@@ -8,7 +11,10 @@ import models.schema2._
 import views.html.{group => view}
 import com.github.aselab.activerecord.dsl._
 
-object Groups extends Controller {
+class Groups @Inject()(
+  implicit webJarAssets: WebJarAssets,
+  val messagesApi: MessagesApi
+) extends Controller with I18nSupport {
 
   def index = Action {
     Ok(view.index(Group.all.toList))

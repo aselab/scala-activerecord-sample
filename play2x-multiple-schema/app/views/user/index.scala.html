@@ -1,4 +1,4 @@
-@(users: List[models.schema1.User])
+@(users: List[models.schema1.User])(implicit messages: Messages, webJarAssets: WebJarAssets)
 
 @main("User list") {
   <ul class="breadcrumb">

@@ -9,7 +9,7 @@ import views.html.{user => view}
 import models._
 import com.github.aselab.activerecord.dsl._
 
-class Users @Inject()(val messagesApi: MessagesApi) extends Controller with I18nSupport {
+class Users @Inject()(implicit webJarAssets: WebJarAssets, val messagesApi: MessagesApi) extends Controller with I18nSupport {
 
   def index = Action {
     Ok(view.index(User.all.toList))
