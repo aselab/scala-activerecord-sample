@@ -1,4 +1,4 @@
-@(users: List[models.schema1.User])(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(users: List[models.schema1.User])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @main("User list") {
   <ul class="breadcrumb">
@@ -28,7 +28,7 @@
           <td>@u.group.map(_.name)</td>
           <td>
             <a href="@routes.Users.edit(u.id)" class="btn btn-default btn-sm">Edit</a>
-            <a href="#" data-redirect="@routes.Users.index" data-target="@routes.Users.delete(u.id)" class="btn btn-sm btn-danger">Delete</a>
+            @helpers.deleteButton(routes.Users.delete(u.id), routes.Users.index)
           </td>
         </tr>
       }

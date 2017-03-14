@@ -1,4 +1,4 @@
-@(question: Form[models.Question])(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(question: Form[models.Question])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @import models.Question.helper._
 @import views.html.helpers.{datetimePicker, datePicker}
@@ -8,6 +8,8 @@
   <link rel='stylesheet' href='@routes.WebJarAssets.at(webJarAssets.locate("css/bootstrap-datetimepicker.min.css"))'>
   <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap-datetimepicker.min.js"))' charset="UTF-8"></script>
   <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap-datepicker.js"))' charset="UTF-8"></script>
+  <script type="text/javascript" src="@routes.Assets.at("js/datepicker.js")"></script>
+  <script type="text/javascript" src="@routes.Assets.at("js/datetimepicker.js")"></script>h
   @if(messages.lang.language != "en") {
     <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("locales/bootstrap-datetimepicker." + messages.lang.language + ".js"))' charset="UTF-8"></script>
     <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("locales/bootstrap-datepicker." + messages.lang.language + ".min.js"))' charset="UTF-8"></script>
@@ -25,6 +27,7 @@
   </div>
   <div class="col-lg-8">
     @helper.form(routes.Questions.create, 'class -> "form-horizontal") {
+      @helper.CSRF.formField
       <fieldset>
         @inputText(question("name"))
         @inputText(question("email"))

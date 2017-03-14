@@ -15,7 +15,7 @@ object Tables extends ActiveRecordTables with ScalatraSupport with InitialData {
 }
 
 trait InitialData extends ActiveRecordTables {
-  override def initialize {
+  override def initialize: Unit = {
     super.initialize
 
     // Create sample data

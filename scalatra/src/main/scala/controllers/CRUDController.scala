@@ -4,7 +4,7 @@ import org.scalatra.ScalatraServlet
 import com.github.aselab.activerecord._
 import reflections._
 import com.github.aselab.activerecord.dsl._
-import mojolly.inflector.InflectorImports._
+import com.github.aselab.activerecord.util.InflectorImports._
 
 abstract class CRUDController[T <: ActiveRecord](
   withoutIndex: Boolean = false,
@@ -13,10 +13,10 @@ abstract class CRUDController[T <: ActiveRecord](
   withoutUpdate: Boolean = false,
   withoutDestroy: Boolean = false
 )(implicit m: Manifest[T]) extends ScalatraServlet with ApplicationController {
-  val companion = ReflectionUtil.classToCompanion(m.erasure)
+  val companion = ReflectionUtil.classToCompanion(m.runtimeClass)
     .asInstanceOf[ActiveRecordCompanion[T]]
 
-  val modelName = m.erasure.getSimpleName
+  val modelName = m.runtimeClass.getSimpleName
   val pluralName = modelName.pluralize
 
   val root = "/" + modelName.underscore + "/"

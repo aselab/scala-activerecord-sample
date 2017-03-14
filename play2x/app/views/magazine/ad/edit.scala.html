@@ -1,4 +1,4 @@
-@(ad: Form[models.Ad], magazineId: Long, action: Call, buttonLabel: String, title: String)(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(ad: Form[models.Ad], magazineId: Long, action: Call, buttonLabel: String, title: String)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @import models.Ad.helper._
 
@@ -17,6 +17,7 @@
   </div>
   <div class="col-lg-8">
     @helper.form(action, 'class -> "form-horizontal") {
+      @helper.CSRF.formField
       <fieldset>
         @inputText(ad("name"))
         @inputText(ad("price"))

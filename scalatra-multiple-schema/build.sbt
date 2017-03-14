@@ -6,7 +6,7 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.1"
 
 enablePlugins(JettyPlugin)
 
@@ -15,13 +15,11 @@ resolvers += Resolver.sonatypeRepo("snapshots")
 libraryDependencies ++= Seq(
   "com.github.aselab" %% "scala-activerecord" % _version,
   "com.github.aselab" %% "scala-activerecord-scalatra" % _version,
-  "com.h2database" % "h2" % "1.4.192",
-  "ch.qos.logback" % "logback-classic" % "1.1.7",
-  "org.scalatra" %% "scalatra" % "2.4.0",
-  "org.scalatra" %% "scalatra-scalate" % "2.4.0",
-  "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
-  "org.eclipse.jetty" % "jetty-webapp" % "9.4.0.M0" % "container",
-  "org.eclipse.jetty" % "jetty-plus" % "9.4.0.M0" % "container"
+  "com.h2database" % "h2" % "1.4.193",
+  "ch.qos.logback" % "logback-classic" % "1.2.1",
+  "org.scalatra" %% "scalatra" % "2.5.0",
+  "org.scalatra" %% "scalatra-scalate" % "2.5.0",
+  "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided"
 )
 
 addCommandAlias("scalatraMultipleSchemaRun", "scalatraMultipleSchemaSample/jetty:start")

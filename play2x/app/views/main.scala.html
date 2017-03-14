@@ -1,4 +1,4 @@
-@(title: String)(content: Html)(implicit flash: Flash = Flash(), webJarAssets: WebJarAssets)
+@(title: String)(content: Html)(implicit request: RequestHeader, webJarAssets: WebJarAssets)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,43 +9,19 @@
     <!-- Le styles -->
     <link rel='stylesheet' href='@routes.WebJarAssets.at(webJarAssets.locate("css/bootstrap.min.css"))'>
     <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("jquery.min.js"))'></script>
+    <script type="text/javascript" src="@routes.Assets.at("js/main.js")"></script>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $("#menu li").each(function() {
-          if (location.href.indexOf($(this).find("a").attr("href")) >= 0) {
-            $(this).addClass("active");
-            return false;
-          }
-        });
-
-        $(".btn-danger").click(function(){
-          var result = confirm("Are you sure?");
-          var self = $(this);
-          if (result) {
-            $.ajax({
-              url : self.data("target"),
-              type: "DELETE",
-              success: function(e) {
-                location.href = self.data("redirect");
-              }
-            });
-          }
-          return false;
-        });
-      });
-    </script>
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Play! 2.5 Sample</a>
+          <a class="navbar-brand" href="/">Play! 2.6 Sample</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav" id="menu">
@@ -58,11 +34,11 @@
     </div>
 
     <div class="container">
-      @flash.get("success").map { message =>
+      @request.flash.get("success").map { message =>
       <div class="alert alert-success">@message
         <div>
           <pre>
-          @flash.get("message")
+          @request.flash.get("message")
           </pre>
         </div>
       </div>

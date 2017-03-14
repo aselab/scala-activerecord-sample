@@ -1,4 +1,4 @@
-@(user: Form[models.schema1.User], action: Call, buttonLabel: String, title: String)(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(user: Form[models.schema1.User], action: Call, buttonLabel: String, title: String)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @import models.schema1.User.helper._
 
@@ -16,6 +16,7 @@
   </div>
   <div class="col-lg-8">
     @helper.form(action, 'class -> "form-horizontal") {
+      @helper.CSRF.formField
       <fieldset>
         @inputText(user("login"))
         @inputPassword(user("password"))

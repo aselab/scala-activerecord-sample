@@ -18,7 +18,7 @@ case class User(
 
   var hashedPassword: String = _
 
-  override def beforeSave() {
+  override def beforeSave: Unit = {
     if (password != null && password != "")
       hashedPassword = User.md5digest(password)
   }

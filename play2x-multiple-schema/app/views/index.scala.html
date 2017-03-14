@@ -1,4 +1,4 @@
-@(message: String)(implicit flash: Flash = Flash(), webJarAssets: WebJarAssets)
+@(message: String)(implicit request: RequestHeader, webJarAssets: WebJarAssets)
 
 @main("Index page") {
   <div class="jumbotron">

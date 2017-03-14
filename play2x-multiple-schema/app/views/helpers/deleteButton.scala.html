@@ -1,0 +1,2 @@
+@(targetUrl: Call, redirectUrl: Call)(implicit request: RequestHeader)
+<a href="#" data-redirect="@redirectUrl" data-target="@targetUrl" data-token="@helper.CSRF.getToken.value" class="btn btn-danger">Delete</a>

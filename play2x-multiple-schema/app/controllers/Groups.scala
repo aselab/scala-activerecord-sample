@@ -11,16 +11,14 @@ import models.schema2._
 import views.html.{group => view}
 import com.github.aselab.activerecord.dsl._
 
-class Groups @Inject()(
-  implicit webJarAssets: WebJarAssets,
-  val messagesApi: MessagesApi
-) extends Controller with I18nSupport {
+class Groups @Inject()(components: ControllerComponents)(implicit webJarAssets: WebJarAssets)
+  extends AbstractController(components) with I18nSupport {
 
-  def index = Action {
+  def index = Action { implicit request =>
     Ok(view.index(Group.all.toList))
   }
 
-  def show(id: Long) = Action {
+  def show(id: Long) = Action { implicit request =>
     Group.find(id) match {
       case Some(group) => Ok(view.show(group))
       case _ => NotFound

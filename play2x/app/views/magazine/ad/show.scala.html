@@ -1,4 +1,4 @@
-@(ad: models.Ad, magazineId: Long)(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(ad: models.Ad, magazineId: Long)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @main("Ad info") {
   <ul class="breadcrumb">
@@ -22,7 +22,7 @@
     <div class="well">
       <a href="@routes.Ads.index(magazineId)" class="btn btn-default">Back</a>
       <a href="@routes.Ads.edit(ad.id, magazineId)" class="btn btn-default">Edit</a>
-      <a href="#" data-redirect="@routes.Ads.index(magazineId)" data-target="@routes.Ads.delete(ad.id, magazineId)" class="btn btn-danger">Delete</a>
+      @helpers.deleteButton(routes.Ads.delete(magazineId, ad.id), routes.Ads.index(magazineId))
     </div>
   </div>
 }

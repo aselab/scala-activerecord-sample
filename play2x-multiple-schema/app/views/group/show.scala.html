@@ -1,4 +1,4 @@
-@(group: models.schema2.Group)(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(group: models.schema2.Group)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @main("Group info") {
   <ul class="breadcrumb">
@@ -19,7 +19,7 @@
     <div class="well">
       <a href="@routes.Groups.index" class="btn btn-default">Back</a>
       <a href="@routes.Groups.edit(group.id)" class="btn btn-default">Edit</a>
-      <a href="#" data-redirect="@routes.Groups.index" data-target="@routes.Groups.delete(group.id)" class="btn btn-danger">Delete</a>
+      @helpers.deleteButton(routes.Groups.delete(group.id), routes.Groups.index)
     </div>
   </div>
 }

@@ -1,4 +1,4 @@
-@(ads: List[models.Ad], magazineId: Long)(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(ads: List[models.Ad], magazineId: Long)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @main("Ad list") {
   <ul class="breadcrumb">
@@ -24,7 +24,7 @@
           <td>@a.price</td>
           <td>
             <a href="@routes.Ads.edit(magazineId, a.id)" class="btn btn-default btn-sm">Edit</a>
-            <a href="#" data-redirect="@routes.Ads.index(magazineId)" data-target="@routes.Ads.delete(a.id, magazineId)" class="btn btn-sm btn-danger">Delete</a>
+            @helpers.deleteButton(routes.Ads.delete(magazineId, a.id), routes.Ads.index(magazineId))
           </td>
         </tr>
       }

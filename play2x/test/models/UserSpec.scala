@@ -1,10 +1,14 @@
 package models
 
 import org.specs2.specification.Scope
+import org.specs2.mutable.Specification
 import com.github.aselab.activerecord._
 import java.util.Locale
+import play.api._
+import play.api.test._
+import play.api.inject.guice.GuiceApplicationBuilder
 
-class UserSpec extends ActiveRecordPlaySpecification {
+class UserSpec extends Specification with ActiveRecordPlaySpecification {
   class WithData extends Scope {
     Locale.setDefault(new Locale("en","US"))
 

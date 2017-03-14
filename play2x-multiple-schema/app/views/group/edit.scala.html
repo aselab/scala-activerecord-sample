@@ -1,4 +1,4 @@
-@(group: Form[models.schema2.Group], action: Call, buttonLabel: String, title: String)(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(group: Form[models.schema2.Group], action: Call, buttonLabel: String, title: String)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @import models.schema2.Group.helper._
 
@@ -16,6 +16,7 @@
   </div>
   <div class="col-lg-8">
     @helper.form(action, 'class -> "form-horizontal") {
+      @helper.CSRF.formField
       <fieldset>
         @inputText(group("name"))
       </fieldset>

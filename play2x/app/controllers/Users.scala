@@ -3,19 +3,20 @@ package controllers
 import javax.inject.Inject
 
 import play.api.mvc._
-import play.api.i18n.{MessagesApi, I18nSupport}
+import play.api.i18n.I18nSupport
 import views.html.{user => view}
 
 import models._
 import com.github.aselab.activerecord.dsl._
 
-class Users @Inject()(implicit webJarAssets: WebJarAssets, val messagesApi: MessagesApi) extends Controller with I18nSupport {
+class Users @Inject()(components: ControllerComponents)(implicit webJarAssets: WebJarAssets)
+  extends AbstractController(components) with I18nSupport {
 
-  def index = Action {
+  def index = Action { implicit request =>
     Ok(view.index(User.all.toList))
   }
 
-  def show(id: Long) = Action {
+  def show(id: Long) = Action { implicit request =>
     User.find(id) match {
       case Some(user) => Ok(view.show(user))
       case _ => NotFound

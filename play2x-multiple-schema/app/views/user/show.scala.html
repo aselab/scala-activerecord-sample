@@ -1,4 +1,4 @@
-@(user: models.schema1.User)(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(user: models.schema1.User)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @main("User info") {
   <ul class="breadcrumb">
@@ -29,7 +29,7 @@
     <div class="well">
       <a href="@routes.Users.index" class="btn btn-default">Back</a>
       <a href="@routes.Users.edit(user.id)" class="btn btn-default">Edit</a>
-      <a href="#" data-redirect="@routes.Users.index" data-target="@routes.Users.delete(user.id)" class="btn btn-danger">Delete</a>
+      @helpers.deleteButton(routes.Users.delete(user.id), routes.Users.index)
     </div>
   </div>
 }

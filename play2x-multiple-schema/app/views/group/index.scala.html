@@ -1,4 +1,4 @@
-@(groups: List[models.schema2.Group])(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(groups: List[models.schema2.Group])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @main("Group list") {
   <ul class="breadcrumb">
@@ -22,7 +22,7 @@
           <td><a href="@routes.Groups.show(g.id)">@g.name</a></td>
           <td>
             <a href="@routes.Groups.edit(g.id)" class="btn btn-default btn-sm">Edit</a>
-            <a href="#" data-redirect="@routes.Groups.index" data-target="@routes.Groups.delete(g.id)" class="btn btn-sm btn-danger">Delete</a>
+            @helpers.deleteButton(routes.Groups.delete(g.id), routes.Groups.index)
           </td>
         </tr>
       }

@@ -1,4 +1,4 @@
-@(magazines: List[models.Magazine])(implicit messages: Messages, webJarAssets: WebJarAssets)
+@(magazines: List[models.Magazine])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
 
 @main("Magazine list") {
   <ul class="breadcrumb">
@@ -22,7 +22,7 @@
           <td><a href="@routes.Magazines.show(m.id)">@m.name</a></td>
           <td>
             <a href="@routes.Magazines.edit(m.id)" class="btn btn-default btn-sm">Edit</a>
-            <a href="#" data-redirect="@routes.Magazines.index" data-target="@routes.Magazines.delete(m.id)" class="btn btn-sm btn-danger">Delete</a>
+            @helpers.deleteButton(routes.Magazines.delete(m.id), routes.Magazines.index)
           </td>
         </tr>
       }
