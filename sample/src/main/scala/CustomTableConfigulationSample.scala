@@ -1,9 +1,8 @@
 package sample08
 
 import com.github.aselab.activerecord._
+import com.github.aselab.activerecord.util.InflectorImports._
 import dsl._
-
-import mojolly.inflector.InflectorImports._
 
 object Tables extends ActiveRecordTables {
   val someModel1 = table[SomeModel1]
