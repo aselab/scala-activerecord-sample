@@ -6,11 +6,12 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import play.api.i18n.I18nSupport
+import org.webjars.play.WebJarsUtil
 
 import models._
 import views.html.{question => view}
 
-class Questions @Inject()(components: ControllerComponents)(implicit webJarAssets: WebJarAssets)
+class Questions @Inject()(components: ControllerComponents)(implicit webJarsUtil: WebJarsUtil)
   extends AbstractController(components) with I18nSupport {
 
   def newPage = Action { implicit request =>

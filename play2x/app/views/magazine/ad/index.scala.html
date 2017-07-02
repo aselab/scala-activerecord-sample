@@ -1,4 +1,4 @@
-@(ads: List[models.Ad], magazineId: Long)(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+@(ads: List[models.Ad], magazineId: Long)(implicit request: RequestHeader, messages: Messages, webJarsUtil: org.webjars.play.WebJarsUtil)
 
 @main("Ad list") {
   <ul class="breadcrumb">

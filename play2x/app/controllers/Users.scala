@@ -4,12 +4,13 @@ import javax.inject.Inject
 
 import play.api.mvc._
 import play.api.i18n.I18nSupport
+import org.webjars.play.WebJarsUtil
 import views.html.{user => view}
 
 import models._
 import com.github.aselab.activerecord.dsl._
 
-class Users @Inject()(components: ControllerComponents)(implicit webJarAssets: WebJarAssets)
+class Users @Inject()(components: ControllerComponents)(implicit webJarsUtil: WebJarsUtil)
   extends AbstractController(components) with I18nSupport {
 
   def index = Action { implicit request =>

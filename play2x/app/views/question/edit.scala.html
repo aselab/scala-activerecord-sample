@@ -1,18 +1,18 @@
-@(question: Form[models.Question])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+@(question: Form[models.Question])(implicit request: RequestHeader, messages: Messages, webJarsUtil: org.webjars.play.WebJarsUtil)
 
 @import models.Question.helper._
 @import views.html.helpers.{datetimePicker, datePicker}
 
 @main("Question") {
-  <link rel='stylesheet' href='@routes.WebJarAssets.at(webJarAssets.locate("css/bootstrap-datepicker.min.css"))'>
-  <link rel='stylesheet' href='@routes.WebJarAssets.at(webJarAssets.locate("css/bootstrap-datetimepicker.min.css"))'>
-  <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap-datetimepicker.min.js"))' charset="UTF-8"></script>
-  <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("bootstrap-datepicker.js"))' charset="UTF-8"></script>
+  <link rel='stylesheet' href='@webJarsUtil.url("css/bootstrap-datepicker.min.css")'>
+  <link rel='stylesheet' href='@webJarsUtil.url("css/bootstrap-datetimepicker.min.css")'>
+  <script type='text/javascript' src='@webJarsUtil.url("bootstrap-datetimepicker.min.js")' charset="UTF-8"></script>
+  <script type='text/javascript' src='@webJarsUtil.url("bootstrap-datepicker.js")' charset="UTF-8"></script>
   <script type="text/javascript" src="@routes.Assets.at("js/datepicker.js")"></script>
-  <script type="text/javascript" src="@routes.Assets.at("js/datetimepicker.js")"></script>h
+  <script type="text/javascript" src="@routes.Assets.at("js/datetimepicker.js")"></script>
   @if(messages.lang.language != "en") {
-    <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("locales/bootstrap-datetimepicker." + messages.lang.language + ".js"))' charset="UTF-8"></script>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("locales/bootstrap-datepicker." + messages.lang.language + ".min.js"))' charset="UTF-8"></script>
+    <script type='text/javascript' src='@webJarsUtil.url("locales/bootstrap-datetimepicker." + messages.lang.language + ".js")' charset="UTF-8"></script>
+    <script type='text/javascript' src='@webJarsUtil.url("locales/bootstrap-datepicker." + messages.lang.language + ".min.js")' charset="UTF-8"></script>
   }
   <ul class="breadcrumb">
     <li><a href="/">Home</a></li>

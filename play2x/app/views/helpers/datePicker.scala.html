@@ -1,7 +1,7 @@
-@(field: Field, args: (Symbol,String)*)(implicit handler: views.html.helper.FieldConstructor, messages: Messages, lang: play.api.i18n.Lang)
+@(field: Field, args: (Symbol,String)*)(implicit handler: views.html.helper.FieldConstructor, messages: Messages)
 
 @views.html.helper.input(field, args: _*) { (id, name, value, htmlArgs) =>
-  <div class="datepicker input-group input-append date" id="datepicker_@id" data-lang="@lang.language" data-value="@value">
+  <div class="datepicker input-group input-append date" id="datepicker_@id" data-lang="@messages.lang.language" data-value="@value">
     <input class="form-control" size="16" type="text" value="" readonly>
     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>

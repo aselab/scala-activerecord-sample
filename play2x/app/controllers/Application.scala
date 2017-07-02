@@ -4,9 +4,10 @@ import javax.inject.Inject
 
 import play.api.mvc._
 import play.api.i18n.I18nSupport
+import org.webjars.play.WebJarsUtil
 
 class Application @Inject()(components: ControllerComponents)(
-  implicit webJarAssets: WebJarAssets
+  implicit webJarsUtil: WebJarsUtil
 ) extends AbstractController(components) with I18nSupport {
 
   def index = Action { implicit request =>

@@ -6,7 +6,7 @@ $(function() {
       autoclose: true,
       todayBtn: true,
       linkField: self.data("name"),
-      linkFormat: "yyyy-mm-ddThh:ii:00.000Z",
+      linkFormat: "t",
       language: self.data("lang")
     });
     var value = self.data("value");

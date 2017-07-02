@@ -1,4 +1,4 @@
-@(users: List[models.User])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+@(users: List[models.User])(implicit request: RequestHeader, messages: Messages, webJarsUtil: org.webjars.play.WebJarsUtil)
 
 @main("User list") {
   <ul class="breadcrumb">

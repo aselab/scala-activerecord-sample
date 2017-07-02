@@ -4,13 +4,14 @@ import javax.inject.Inject
 
 import play.api.mvc._
 import play.api.i18n.I18nSupport
+import org.webjars.play.WebJarsUtil
 import views.html.magazine.{ad => view}
 import scala.concurrent.Future
 
 import models._
 import com.github.aselab.activerecord.dsl._
 
-class Ads @Inject()(components: ControllerComponents)(implicit webJarAssets: WebJarAssets)
+class Ads @Inject()(components: ControllerComponents)(implicit webJarsUtil: WebJarsUtil)
   extends AbstractController(components) with I18nSupport {
 
   def withMagazine(magazineId: Long)(block: Magazine => Request[AnyContent] => Result) =

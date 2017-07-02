@@ -1,4 +1,4 @@
-@(magazines: List[models.Magazine])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+@(magazines: List[models.Magazine])(implicit request: RequestHeader, messages: Messages, webJarsUtil: org.webjars.play.WebJarsUtil)
 
 @main("Magazine list") {
   <ul class="breadcrumb">

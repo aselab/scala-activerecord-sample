@@ -6,12 +6,13 @@ import play.api.mvc._
 import play.api.i18n.{MessagesApi, I18nSupport}
 import play.api.data._
 import play.api.data.Forms._
+import org.webjars.play.WebJarsUtil
 
 import models.schema2._
 import views.html.{group => view}
 import com.github.aselab.activerecord.dsl._
 
-class Groups @Inject()(components: ControllerComponents)(implicit webJarAssets: WebJarAssets)
+class Groups @Inject()(components: ControllerComponents)(implicit webJarsUtil: WebJarsUtil)
   extends AbstractController(components) with I18nSupport {
 
   def index = Action { implicit request =>

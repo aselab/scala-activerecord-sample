@@ -1,4 +1,4 @@
-@(groups: List[models.schema2.Group])(implicit request: RequestHeader, messages: Messages, webJarAssets: WebJarAssets)
+@(groups: List[models.schema2.Group])(implicit request: RequestHeader, messages: Messages, webJarsUtil: org.webjars.play.WebJarsUtil)
 
 @main("Group list") {
   <ul class="breadcrumb">
