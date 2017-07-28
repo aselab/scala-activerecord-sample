@@ -1,4 +1,4 @@
-lazy val _version = "0.4.0-SNAPSHOT"
+lazy val _version = "0.4.0"
 
 name := "scalatra-multiple-schema-sample"
 
@@ -25,5 +25,3 @@ libraryDependencies ++= Seq(
 addCommandAlias("scalatraMultipleSchemaRun", "scalatraMultipleSchemaSample/jetty:start")
 
 javaOptions in Jetty += "-Xmx2g"
-
-activerecordScalatraSettings

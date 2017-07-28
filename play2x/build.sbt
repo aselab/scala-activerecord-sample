@@ -1,4 +1,4 @@
-val _version = "0.4.0-SNAPSHOT"
+val _version = "0.4.0"
 
 name := "scala-activerecord-play2x-sample"
 
@@ -25,8 +25,6 @@ libraryDependencies ++= Seq(
   "org.webjars" % "bootstrap-datepicker" % "1.6.4",
   "org.webjars" % "bootstrap-datetimepicker" % "2.4.2"
 )
-
-activerecordPlaySettings
 
 routesGenerator := InjectedRoutesGenerator
 

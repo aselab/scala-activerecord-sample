@@ -1,4 +1,4 @@
-val _version = "0.4.0-SNAPSHOT"
+val _version = "0.4.0"
 
 name := "play2x-multiple-schema-sample"
 
@@ -19,5 +19,3 @@ libraryDependencies ++= Seq(
   "org.webjars" %% "webjars-play" % "2.6.0",
   "org.webjars" % "bootstrap" % "3.3.7-1"
 )
-
-activerecordPlaySettings

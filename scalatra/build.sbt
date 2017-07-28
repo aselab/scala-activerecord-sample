@@ -1,4 +1,4 @@
-lazy val _version = "0.4.0-SNAPSHOT"
+lazy val _version = "0.4.0"
 
 name := "scala-activerecord-scalatra-sample"
 
@@ -25,8 +25,6 @@ libraryDependencies ++= Seq(
 addCommandAlias("scalatraRun", "scalatra/jetty:start")
 
 javaOptions in Jetty += "-Xmx2g"
-
-activerecordScalatraSettings
 
 scalacOptions ++= Seq(
   "target:jvm-1.8",

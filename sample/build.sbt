@@ -1,4 +1,4 @@
-val _version = "0.4.0-SNAPSHOT"
+val _version = "0.4.0"
 
 name := "scala-activerecord-sample"
 
@@ -22,5 +22,3 @@ libraryDependencies ++= Seq(
 scalacOptions ++= Seq("-deprecation", "-unchecked")
 
 discoveredMainClasses in Compile ~= {_.sorted}
-
-activerecordGeneratorSettings
