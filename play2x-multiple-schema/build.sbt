@@ -4,7 +4,7 @@ name := "play2x-multiple-schema-sample"
 
 organization := "com.github.aselab"
 
-scalaVersion := "2.12.2"
+scalaVersion := "2.12.3"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 

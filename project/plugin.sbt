@@ -5,7 +5,7 @@ resolvers ++= Seq(
 
 addSbtPlugin("com.earldouglas" % "xsbt-web-plugin" % "3.0.3")
 
-addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.0")
+addSbtPlugin("com.typesafe.play" % "sbt-plugin" % "2.6.2")
 
 addSbtPlugin("com.github.aselab" % "scala-activerecord-play2-sbt" % "0.4.0-SNAPSHOT")
 
