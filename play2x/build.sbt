@@ -1,4 +1,4 @@
-val _version = "0.6.0-SNAPSHOT"
+val _version = "0.6.0"
 
 name := "scala-activerecord-play2x-sample"
 
@@ -6,7 +6,7 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.13.2"
+scalaVersion := "2.13.3"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
@@ -34,7 +34,6 @@ scalacOptions ++= Seq(
   "-encoding", "UTF-8",
   "-feature",
   "-unchecked",
-  "-Ywarn-adapted-args",
   "-Ywarn-dead-code",
   "-Ywarn-numeric-widen",
   "-Ywarn-value-discard",

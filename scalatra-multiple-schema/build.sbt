@@ -1,4 +1,4 @@
-lazy val _version = "0.6.0-SNAPSHOT"
+lazy val _version = "0.6.0"
 
 name := "scalatra-multiple-schema-sample"
 

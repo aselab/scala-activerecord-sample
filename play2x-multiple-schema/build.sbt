@@ -1,10 +1,10 @@
-val _version = "0.6.0-SNAPSHOT"
+val _version = "0.6.0"
 
 name := "play2x-multiple-schema-sample"
 
 organization := "com.github.aselab"
 
-scalaVersion := "2.13.2"
+scalaVersion := "2.13.3"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
