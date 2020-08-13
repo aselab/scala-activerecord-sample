@@ -1,5 +1,6 @@
 package sample07
 
+import scala.language.postfixOps
 import com.github.aselab.activerecord._
 import dsl._
 

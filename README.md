@@ -4,22 +4,20 @@ http://play2-scala-activerecord.herokuapp.com/
 
 ## Scala ActiveRecord sample
 
-run sbt.
-
-```sh
-$ bin/sbt
-```
-
 ### Console application samples
 
 ```
-> sample/run
+cd sample/
+sbt
+> run
 ```
 
 ### Scalatra sample
 
 ```
-> scalatraRun
+cd scalatra/
+sbt
+> jetty:start
 ```
 
 The application starts on http://localhost:8080.
@@ -27,23 +25,28 @@ The application starts on http://localhost:8080.
 ### Scalatra sample (multiple-schema)
 
 ```
-> scalatraMultipleSchemaRun
+cd scalatra-multiple-schema/
+sbt
+> jetty:start
 ```
 
 The application starts on http://localhost:8080.
 
-### Play! 2.5 sample
+### Play! 2.8 sample
 
 ```
-> play2x/run
+cd play2x/
+sbt
+> run
 ```
 
 The application starts on http://localhost:9000.
 
-### Play! 2.5 sample (multiple-schema)
+### Play! 2.8 sample (multiple-schema)
 
 ```
-> project play2xMultipleSchemaSample
+cd play2x-multiple-schema/
+sbt
 > run
 ```
 
