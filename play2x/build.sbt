@@ -1,4 +1,4 @@
-val _version = "0.6.1"
+val _version = "0.6.2"
 
 name := "scala-activerecord-play2x-sample"
 

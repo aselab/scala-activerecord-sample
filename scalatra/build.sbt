@@ -1,4 +1,4 @@
-lazy val _version = "0.6.1"
+lazy val _version = "0.6.2"
 
 name := "scala-activerecord-scalatra-sample"
 
