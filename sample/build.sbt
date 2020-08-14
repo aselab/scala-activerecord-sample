@@ -12,7 +12,7 @@ resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies ++= Seq(
   "com.github.aselab" %% "scala-activerecord" % _version,
-  "com.h2database" % "h2" % "1.4.196",
+  "com.h2database" % "h2" % "1.4.200",
   "org.slf4j" % "slf4j-nop" % "1.7.25"
   // for debug
   //"org.slf4j" % "slf4j-api" % "1.7.25",
