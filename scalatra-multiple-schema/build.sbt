@@ -6,9 +6,9 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.13.3"
+scalaVersion := "2.13.4"
 
-val ScalatraVersion = "2.7.0"
+val ScalatraVersion = "2.7.1"
 
 enablePlugins(ScalatraPlugin)
 enablePlugins(JettyPlugin)
@@ -25,11 +25,7 @@ libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra" % ScalatraVersion,
   "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
   "org.scalatra.scalate" %% "scalate-core" % "1.9.6",
-  "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
-)
-
-containerLibs in Jetty := Seq(
-  "org.eclipse.jetty" % "jetty-runner" % "9.4.31.v20200723" intransitive()
+  "javax.servlet" % "javax.servlet-api" % "4.0.1" % "provided"
 )
 
 javaOptions in Jetty += "-Xmx2g"

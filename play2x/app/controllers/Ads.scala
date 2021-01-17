@@ -35,7 +35,7 @@ class Ads @Inject()(components: ControllerComponents)(implicit webJarsUtil: WebJ
   }
 
   def create(magazineId: Long) = withMagazine(magazineId) { m => implicit request =>
-    Ad.form(Ad.newInstance("magazineId" -> magazineId)).bindFromRequest()(request).fold(
+    Ad.form(Ad.newInstance("magazineId" -> magazineId)).bindFromRequest().fold(
       errors => BadRequest(view.edit(errors, magazineId, routes.Ads.create(magazineId), "Create", "Ad create")), {
       ad =>
         Ad.transaction { ad.save }
@@ -54,7 +54,7 @@ class Ads @Inject()(components: ControllerComponents)(implicit webJarsUtil: WebJ
   def update(magazineId: Long, id: Long) = withMagazine(magazineId) { m => implicit request =>
     m.ads.find(id) match {
       case Some(ad) =>
-        Ad.form(ad).bindFromRequest()(request).fold(
+        Ad.form(ad).bindFromRequest().fold(
           errors => BadRequest(view.edit(errors, magazineId, routes.Ads.update(magazineId, id), "Update", "Ad edit")), {
           ad =>
             Ad.transaction { ad.save }

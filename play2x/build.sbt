@@ -6,7 +6,7 @@ organization := "com.github.aselab"
 
 version := _version
 
-scalaVersion := "2.13.3"
+scalaVersion := "2.13.4"
 
 resolvers += Resolver.sonatypeRepo("snapshots")
 
