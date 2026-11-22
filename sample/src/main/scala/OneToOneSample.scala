@@ -29,11 +29,11 @@ object OneToOneSample extends App {
   val account2 = Account("account2").create
   supplier.account := account1
   println(supplier.account.number) // => account1
-  println(account1.supplier.toOption) // => Some(Supplier("supplier1"))
+  println(account1.supplier.toOption) // => Some(Supplier("supplier"))
 
   supplier.account := account2
   println(supplier.account.number) // => account2
-  println(account2.supplier.toOption) // => Some(Supplier("supplier2"))
+  println(account2.supplier.toOption) // => Some(Supplier("supplier"))
   println(account1.supplier.toOption) // => None
 
   Tables.cleanup
