@@ -16,7 +16,7 @@ object QuerySample extends App {
   Tables.initialize(Map("schema" -> "sample07.Tables"))
 
   // create 30 people
-  (1 to 30).foreach { i => Person("name" + i, None, i).save }
+  (1 to 30).foreach { i => Person("name" + i, None, i).save() }
 
   println(Person.all.toList) // => all people
   println(Person.where(_.name === "name1").toList)   // => only person1

@@ -25,8 +25,8 @@ object Person extends ActiveRecordCompanion[Person]
 object ValidationSample extends App {
   Tables.initialize(Map("schema" -> "sample05.Tables"))
 
-  val person = Person("Very very long name" * 100, "Invalid email address", 250)
-  person.save // => returns false if the record is not valid.
+  val person = Person("Very very long name".repeat(100), "Invalid email address", 250)
+  person.save() // => returns false if the record is not valid.
   // person.saveWithoutValidation
 
   println(person.errors.messages.mkString("\n"))

@@ -8,25 +8,25 @@ object Tables extends ActiveRecordTables {
 }
 
 case class Person(@Required var name: String, var age: Int) extends ActiveRecord {
-  override def beforeValidation { println("beforeValidation") }
+  override def beforeValidation(): Unit = println("beforeValidation")
 
-  override def doValidate { println("doValidate") }
+  override def doValidate(): Unit = println("doValidate")
 
-  override def beforeSave { println("beforeSave") }
+  override def beforeSave(): Unit = println("beforeSave")
 
-  override def afterSave { println("afterSave") }
+  override def afterSave(): Unit = println("afterSave")
 
-  override def beforeCreate { println("beforeCreate") }
+  override def beforeCreate(): Unit = println("beforeCreate")
 
-  override def afterCreate { println("afterCreate") }
+  override def afterCreate(): Unit = println("afterCreate")
 
-  override def beforeUpdate { println("beforeUpdate") }
+  override def beforeUpdate(): Unit = println("beforeUpdate")
 
-  override def afterUpdate { println("afterUpdate") }
+  override def afterUpdate(): Unit = println("afterUpdate")
 
-  override def beforeDelete { println("beforeDelete") }
+  override def beforeDelete(): Unit = println("beforeDelete")
 
-  override def afterDelete { println("afterDelete") }
+  override def afterDelete(): Unit = println("afterDelete")
 }
 
 object Person extends ActiveRecordCompanion[Person]
@@ -37,16 +37,16 @@ object CallbackSample extends App {
   val person = Person("person1", 20)
 
   println("=== Create callback ===")
-  person.save
+  person.save()
   println("=== End create callback ===\n")
 
   println("=== Update callback ===")
   person.age = 24
-  person.save
+  person.save()
   println("=== End update callback ===\n")
 
   println("=== Delete callback ===")
-  person.delete
+  person.delete()
   println("=== End delete callback ===\n")
 
   Tables.cleanup

@@ -52,7 +52,7 @@ object HasManyThroughSample extends App {
 
   val membership1 = user1.projects.assign(project1)
   membership1.role := role1
-  membership1.save
+  membership1.save()
 
   user1.projects << project2
   project1.users << user2

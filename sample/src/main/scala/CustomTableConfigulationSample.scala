@@ -10,15 +10,15 @@ object Tables extends ActiveRecordTables {
   val someModel3 = table[SomeModel3]
 
   // ModelClass => "MODEL_CLASS"
-  override def tableNameFromClass(c: Class[_]): String =
+  override def tableNameFromClass(c: Class[?]): String =
     c.getSimpleName.underscore.toUpperCase
 
   // ModelClass1, ModelClass2 => "MODEL_CLASS1___MODEL_CLASS2"
-  override def tableNameFromClasses(c1: Class[_], c2: Class[_]): String =
+  override def tableNameFromClasses(c1: Class[?], c2: Class[?]): String =
     Seq(c1, c2).map(tableNameFromClass).sorted.mkString("___")
 
   // ModelClass => "ModelClass_id"
-  override def foreignKeyFromClass(c: Class[_]): String =
+  override def foreignKeyFromClass(c: Class[?]): String =
     c.getSimpleName.takeWhile(_ != '$').camelize + "___id"
 
   // ModelField => "MODEL_FIELD"

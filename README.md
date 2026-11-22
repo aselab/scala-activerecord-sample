@@ -4,7 +4,12 @@ http://play2-scala-activerecord.herokuapp.com/
 
 ## Scala ActiveRecord sample
 
+The Scalatra and Play! samples still use scala-activerecord 0.6.2 on Scala 2.13, as 0.7.0 does not include the
+Scalatra and Play! 2 modules.
+
 ### Console application samples
+
+These samples use scala-activerecord 0.7.0-SNAPSHOT on Scala 3.7. Running them needs JDK 17 or later (sbt 2).
 
 ```
 cd sample/
